@@ -17,6 +17,8 @@ Field guide for any agent working inside the Adullam Academy website repo (`astr
 - Comment only when logic is non-obvious; otherwise rely on naming.
 - Run `npm run dev` before submitting changes to check layout, animations, and content pull-through.
 - If adding dependencies or changing build settings, document the reasoning in PR/commit descriptions.
+- Only create commits when the user explicitly requests it—otherwise leave work unstaged so they can review.
+- When a commit is requested: run `git status`, stage only related files, craft a concise message summarizing why the change matters, then `git commit -m "your message"` and share the status/output.
 
 ## Architecture Snapshot
 - Astro 5 project with only `.astro` components (no React/Vue/Svelte).
@@ -55,14 +57,15 @@ Field guide for any agent working inside the Adullam Academy website repo (`astr
 - Keep console noise out of production—remove `console.log` unless debugging locally.
 
 ## Styling & Theming
-- All custom styles live in `src/styles/global.css`. Tailwind utilities are available globally via `@import "tailwindcss"` and the `@theme` declaration.
+- Tailwind utilities are the default for component-level styling—compose layouts, spacing, motion, and state styles inline in `.astro` files.
+- `src/styles/global.css` is reserved for theme tokens, `@apply`-based global utilities (buttons, gradients, glass, animations), and palette definitions via `@theme`. Add new CSS here only when multiple pages need the helper.
 - Use defined CSS variables/colors: `navy-*` for primary surfaces, `gold-*` for accents, `cream` backgrounds, `electric-*` for tech highlights.
 - Reusable utility classes:
   - Buttons: `.btn-primary`, `.btn-secondary`, `.btn-outline-gold` (include hover/active transitions).
   - Glassmorphism: `.glass`, `.glass-dark`, `.glass-gold`.
   - Gradients: `.gradient-navy`, `.gradient-gold`, `.gradient-hero`, `.gradient-text`, `.gradient-animated`.
   - Animations: `.animate-on-scroll*`, `.card-hover`, `.card-glow`, `.stagger-*`.
-- Extend styles through `@theme` additions rather than ad-hoc hex values; keep gradients consistent with palette.
+- Extend styles through `@theme` additions rather than ad-hoc hex values; keep gradients consistent with palette and reuse Tailwind tokens whenever possible.
 - Backgrounds rarely flat—use gradients, shapes, blur blobs, or noise overlays for depth, matching existing visual language.
 
 ## Layout & Components

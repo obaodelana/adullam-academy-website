@@ -1,0 +1,175 @@
+---
+import Testimonial from './Testimonial.astro';
+
+interface TestimonialEntry {
+  id: string;
+  slug: string;
+  body: string;
+  data: {
+    name: string;
+    role: string;
+    image?: string;
+  };
+}
+
+interface Props {
+  testimonials: TestimonialEntry[];
+}
+
+const { testimonials } = Astro.props;
+const slides = testimonials ?? [];
+
+const chunkSize = 2;
+const slideGroups = Array.from({ length: Math.ceil(slides.length / chunkSize) }, (_, groupIndex) => {
+  const start = groupIndex * chunkSize;
+  return slides.slice(start, start + chunkSize);
+});
+---
+
+<div 
+  class="relative overflow-hidden rounded-[1.75rem] bg-white/90 px-6 py-10 shadow-[0_40px_80px_rgba(10,22,40,0.2)] ring-1 ring-white/30 backdrop-blur-md sm:px-10"
+  data-carousel="testimonials"
+>
+  <div class="pointer-events-none absolute inset-1 rounded-[1.5rem] border border-gold-500/30"></div>
+
+  <ul 
+    class="relative z-10 flex transition-transform duration-500 ease-out"
+    data-carousel-track
+    style="--active-index: 0; transform: translateX(calc(var(--active-index) * -100%));"
+  >
+    {slideGroups.map((group, index) => (
+      <li 
+        class="w-full flex-shrink-0 pr-0 md:pr-6"
+        data-carousel-slide
+        aria-hidden={index !== 0}
+      >
+        <div class="grid gap-6 lg:grid-cols-2">
+          {group.map((testimonial) => (
+            <Testimonial 
+              quote={testimonial.body}
+              name={testimonial.data.name}
+              role={testimonial.data.role}
+              image={testimonial.data.image}
+            />
+          ))}
+        </div>
+      </li>
+    ))}
+  </ul>
+
+  <div class="absolute right-6 top-6 z-20 flex gap-3">
+    <button 
+      type="button" 
+      class="grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-navy-900/90 text-white transition hover:-translate-y-0.5 hover:bg-gold-500 hover:text-navy-900"
+      data-carousel-prev
+      aria-label="Previous testimonial"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <button 
+      type="button" 
+      class="grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-navy-900/90 text-white transition hover:-translate-y-0.5 hover:bg-gold-500 hover:text-navy-900"
+      data-carousel-next
+      aria-label="Next testimonial"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="relative z-10 mt-10 flex justify-center gap-3" role="tablist">
+    {slideGroups.map((_, index) => (
+      <button 
+        type="button"
+        role="tab"
+        aria-label={`Show testimonial ${index + 1}`}
+        aria-selected={index === 0}
+        class:list={[
+          "h-3 w-3 rounded-full border border-transparent bg-navy-900/15 transition-all duration-300 ease-out",
+          index === 0 && "w-6 bg-gold-500 border-gold-500/20"
+        ]}
+        data-carousel-dot
+        data-index={index}
+      />
+    ))}
+  </div>
+</div>
+
+<script>
+  const initTestimonialCarousel = () => {
+    const carousel = document.querySelector('[data-carousel="testimonials"]') as HTMLElement | null;
+    if (!carousel || carousel.dataset.initialized === 'true') return;
+    carousel.dataset.initialized = 'true';
+
+    const track = carousel.querySelector('[data-carousel-track]') as HTMLElement | null;
+    const slides = carousel.querySelectorAll<HTMLElement>('[data-carousel-slide]');
+    const dots = carousel.querySelectorAll<HTMLElement>('[data-carousel-dot]');
+    const prev = carousel.querySelector<HTMLElement>('[data-carousel-prev]');
+    const next = carousel.querySelector<HTMLElement>('[data-carousel-next]');
+    if (!track || slides.length === 0) return;
+
+    let index = 0;
+    let autoplayId: number | undefined;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const update = () => {
+      track.style.setProperty('--active-index', `${index}`);
+      slides.forEach((slide, slideIndex) => {
+        slide.setAttribute('aria-hidden', slideIndex === index ? 'false' : 'true');
+      });
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle('is-active', dotIndex === index);
+        dot.setAttribute('aria-selected', dotIndex === index ? 'true' : 'false');
+      });
+    };
+
+    const setIndex = (nextIndex: number) => {
+      const slideCount = slides.length;
+      index = (nextIndex + slideCount) % slideCount;
+      update();
+    };
+
+    prev?.addEventListener('click', () => setIndex(index - 1));
+    next?.addEventListener('click', () => setIndex(index + 1));
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const dotIndex = Number(dot.getAttribute('data-index'));
+        if (!Number.isNaN(dotIndex)) {
+          setIndex(dotIndex);
+        }
+      });
+    });
+
+    const stopAutoplay = () => {
+      if (autoplayId) {
+        window.clearInterval(autoplayId);
+        autoplayId = undefined;
+      }
+    };
+
+    const startAutoplay = () => {
+      if (prefersReducedMotion || slides.length <= 1) return;
+      stopAutoplay();
+      autoplayId = window.setInterval(() => setIndex(index + 1), 8000);
+    };
+
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+    carousel.addEventListener('focusin', stopAutoplay);
+    carousel.addEventListener('focusout', startAutoplay);
+
+    update();
+    startAutoplay();
+  };
+
+  const ready = () => {
+    if (typeof document === 'undefined') return;
+    initTestimonialCarousel();
+  };
+
+  document.addEventListener('DOMContentLoaded', ready);
+  document.addEventListener('astro:page-load', ready);
+</script>

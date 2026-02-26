@@ -16,7 +16,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import FeatureCard from '../components/FeatureCard.astro';
-import Testimonial from '../components/Testimonial.astro';
+import TestimonialCarousel from '../components/TestimonialCarousel.astro';
 import CTA from '../components/CTA.astro';
 import { getCollection } from 'astro:content';
 
@@ -200,22 +200,8 @@ const approachItems = [
         description="Real stories from families who have experienced the Adullam Academy difference."
       />
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {sortedTestimonials.map((testimonial, index) => {
-          const roleDisplay = testimonial.data.role === 'Student' && testimonial.data.age 
-            ? `${testimonial.data.role} (Age ${testimonial.data.age})`
-            : testimonial.data.role;
-          
-          return (
-            <Testimonial 
-              quote={testimonial.body}
-              name={testimonial.data.name}
-              role={roleDisplay}
-              image={testimonial.data.image}
-              delay={index * 0.1}
-            />
-          );
-        })}
+      <div class="max-w-5xl mx-auto">
+        <TestimonialCarousel testimonials={sortedTestimonials} />
       </div>
     </div>
   </section>
