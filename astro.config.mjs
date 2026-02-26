@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://adullamacademy.com',
   // Use the no-op image service to avoid sharp dependency issues
   image: {
     service: {
