@@ -1,43 +1,63 @@
-# Astro Starter Kit: Minimal
+# Adullam Academy Website
 
-```sh
-npm create astro@latest -- --template minimal
+Official repository for [Adullam Academy](https://adullamacademy.com), a faith-centered coding bootcamp for kids ages 8-18. The site is built with **Astro 5** and **Tailwind CSS v4**, deploys to GitHub Pages, and sources rich content from Astro Content Collections.
+
+## Stack
+
+- **Framework:** Astro (static output)
+- **Styling:** Tailwind CSS v4 with tokens defined in `src/styles/global.css`
+- **Content:** Markdown collections (`faq`, `testimonials`, `projects`)
+- **Deployment:** GitHub Actions → GitHub Pages (`.github/workflows/deploy.yml`)
+
+## Project Structure
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
-├── public/
+├── public/                 # Static assets (logos, images)
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/         # Reusable .astro components
+│   ├── content/            # Markdown entries validated by content collections
+│   ├── layouts/            # BaseLayout wraps every page
+│   ├── pages/              # Route-based pages (/, /bootcamp, /about, /contact)
+│   └── styles/global.css   # Tailwind @theme tokens + shared utilities
+├── astro.config.mjs        # Astro config (site URL, Tailwind plugin, noop image service)
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Commands
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Run everything from the repository root:
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Command | Description |
+| --- | --- |
+| `npm install` | Install dependencies (Node 20 recommended) |
+| `npm run dev` | Start the Astro dev server at `http://localhost:4321` |
+| `npm run build` | Build the static site into `dist/` |
+| `npm run preview` | Preview the production build locally |
+| `npm run astro check` | Validate content collections and types (requires `@astrojs/check`) |
 
-## 🧞 Commands
+## Deployment
 
-All commands are run from the root of the project, from a terminal:
+1. Merge or push to `main`.
+2. GitHub Actions workflow `.github/workflows/deploy.yml` installs deps, runs `npm run build`, uploads `dist/`, and deploys via `actions/deploy-pages`.
+3. GitHub Pages hosts the built site at `https://adullamacademy.com`.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+If the workflow fails, re-run it from the Actions tab after addressing the error.
 
-## 👀 Want to learn more?
+## Content & Customization
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Section | Collection Path | Frontmatter Highlights |
+| --- | --- | --- |
+| FAQs | `src/content/faq/*.md` | `question`, `order`, `category`, `published` |
+| Testimonials | `src/content/testimonials/*.md` | `name`, `role`, `order`, `featured`, `published` |
+| Projects | `src/content/projects/*.md` | `title`, `category`, `description`, `session`, `order`, `featured`, `published` |
+
+- Schemas live in `src/content/config.ts`; frontmatter must match the defined shapes.
+- Place shared images under `public/images/` and logos under `public/logos/`.
+- `BaseLayout.astro` wraps every page, injecting metadata, header/footer, announcement bar, animation observer, and view transitions.
+
+## Styling Notes
+
+- Tailwind utilities are preferred inside components. Use `global.css` only for shared tokens/utilities.
+- Color palette and typography tokens (`navy-*`, `gold-*`, `cream`, `electric-*`) are defined in the `@theme` block.
+- Reusable utility classes: `.btn-primary`, `.glass`, `.gradient-*`, `.animate-on-scroll*`, `.card-hover`, `.card-glow`.
