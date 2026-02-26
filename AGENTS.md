@@ -104,5 +104,6 @@ Field guide for any agent working inside the Adullam Academy website repo (`astr
 4. Run `npm run astro check` before shipping schema/content updates.
 5. Confirm build succeeds via `npm run build` for structural changes.
 6. Document manual testing steps in PR descriptions since no automated suite exists.
+7. Deployments are handled automatically via `.github/workflows/deploy.yml`, which builds on pushes to `main` and publishes `dist/` to GitHub Pages using the official `actions/deploy-pages` workflow. No manual deployment steps are required unless the workflow fails.
 
 Staying within these guardrails keeps the site’s intentional design, faith-centered storytelling, and light-weight Astro stack intact. Happy shipping!
