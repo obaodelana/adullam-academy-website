@@ -116,11 +116,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://adullama
     <script>
       /**
        * Intersection Observer for Scroll Animations
-       * 
+       *
        * Watches elements with animation classes and triggers
        * animations when they enter the viewport.
        */
-      
+
       const observerOptions = {
         root: null,
         rootMargin: '0px 0px -100px 0px',
@@ -138,27 +138,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://adullama
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.setAttribute('data-visible', 'true');
-            // Optionally stop observing after animation
-            // observer.unobserve(entry.target);
           }
         });
       }, observerOptions);
 
-      // Observe all animated elements
-      document.addEventListener('DOMContentLoaded', () => {
-        animationClasses.forEach((className) => {
-          document.querySelectorAll(`.${className}`).forEach((el) => {
-            observer.observe(el);
-          });
-        });
-      });
-
-      // Re-observe on page transitions (Astro View Transitions)
+      // On every page load (including initial), immediately show in-viewport elements
+      // and use the observer for off-screen elements.
       document.addEventListener('astro:page-load', () => {
+        observer.disconnect();
+
         animationClasses.forEach((className) => {
           document.querySelectorAll(`.${className}`).forEach((el) => {
             el.removeAttribute('data-visible');
-            observer.observe(el);
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              el.setAttribute('data-visible', 'true');
+            } else {
+              observer.observe(el);
+            }
           });
         });
       });
