@@ -17,8 +17,8 @@ Field guide for any agent working inside the Adullam Academy website repo (`astr
 - Comment only when logic is non-obvious; otherwise rely on naming.
 - Run `npm run dev` before submitting changes to check layout, animations, and content pull-through.
 - If adding dependencies or changing build settings, document the reasoning in PR/commit descriptions.
-- Only create commits when the user explicitly requests it—otherwise leave work unstaged so they can review.
-- When a commit is requested: run `git status`, stage only related files, craft a concise message summarizing why the change matters, then `git commit -m "your message"` and share the status/output.
+- Commit regularly as you complete meaningful chunks of work so other agents can sync without giant diffs. Each commit should cover one logical change set (content update, component refactor, etc.).
+- Committing workflow: run `git status`, stage only related files, craft a concise message explaining why the change matters, then `git commit -m "your message"`. Share the resulting status/output with the user when asked.
 
 ## Architecture Snapshot
 - Astro 5 project with only `.astro` components (no React/Vue/Svelte).
