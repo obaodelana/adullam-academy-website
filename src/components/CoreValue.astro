@@ -1,0 +1,105 @@
+---
+/**
+ * CoreValue Component
+ * 
+ * Displays a single core value with title, Scripture reference,
+ * and expandable verse text.
+ * 
+ * Features:
+ * - Icon display
+ * - Scripture reference badge
+ * - Expandable verse text
+ * - Hover animations
+ * - Grid-ready design
+ * 
+ * Props:
+ * @prop {string} title - Value title
+ * @prop {string} verse - Scripture text
+ * @prop {string} reference - Scripture reference (e.g., "Matthew 6:33")
+ * @prop {number} delay - Animation delay for staggered reveals
+ */
+
+interface Props {
+  title: string;
+  verse: string;
+  reference: string;
+  delay?: number;
+}
+
+const { title, verse, reference, delay = 0 } = Astro.props;
+---
+
+<div 
+  class="group relative p-6 rounded-xl bg-white border border-navy-100 shadow-sm hover:shadow-lg hover:border-gold-300/50 transition-all duration-500 animate-on-scroll cursor-pointer"
+  style={`animation-delay: ${delay}s;`}
+  data-value-card
+>
+  <!-- Icon based on value -->
+  <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-gold-500/20">
+    <slot name="icon">
+      <svg class="w-6 h-6 text-navy-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+      </svg>
+    </slot>
+  </div>
+
+  <!-- Title -->
+  <h3 class="text-lg font-bold text-navy-900 mb-2 group-hover:text-gold-600 transition-colors duration-300">
+    {title}
+  </h3>
+
+  <!-- Scripture reference badge -->
+  <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-navy-100 text-navy-600 text-xs font-medium mb-4">
+    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+    </svg>
+    {reference}
+  </span>
+
+  <!-- Verse text (expandable) -->
+  <div class="value-verse overflow-hidden transition-all duration-500" style="max-height: 0; opacity: 0;">
+    <p class="text-navy-600/80 text-sm italic leading-relaxed border-l-2 border-gold-400 pl-4">
+      "{verse}"
+    </p>
+  </div>
+
+  <!-- Expand indicator -->
+  <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <span class="text-xs text-gold-600 font-medium">Click to read</span>
+  </div>
+</div>
+
+<style>
+  [data-value-card][data-expanded="true"] .value-verse {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 1rem;
+  }
+</style>
+
+<script>
+  /**
+   * CoreValue Card Expansion
+   * 
+   * Handles click to expand/collapse Scripture verse text.
+   */
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    initValueCards();
+  });
+
+  document.addEventListener('astro:page-load', () => {
+    initValueCards();
+  });
+
+  function initValueCards() {
+    const cards = document.querySelectorAll('[data-value-card]');
+    
+    cards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const isExpanded = card.getAttribute('data-expanded') === 'true';
+        card.setAttribute('data-expanded', (!isExpanded).toString());
+      });
+    });
+  }
+</script>

@@ -1,0 +1,183 @@
+---
+/**
+ * Header Component
+ * 
+ * Main navigation header with logo, nav links, and CTA buttons.
+ * 
+ * Features:
+ * - Responsive design with mobile hamburger menu
+ * - Sticky positioning with solid navy background
+ * - Two CTA buttons: Register (primary) + Launch Course (secondary)
+ * - Animated mobile menu
+ * - Active link highlighting
+ * - White circular background behind logo for visibility
+ */
+
+// Navigation links configuration
+const navLinks = [
+  { href: "/bootcamp", label: "Program" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+
+// Get current path for active link highlighting
+const currentPath = Astro.url.pathname;
+---
+
+<header 
+  id="main-header"
+  class="fixed top-0 left-0 right-0 z-40 bg-navy-900 shadow-lg"
+>
+  <nav class="container mx-auto px-4 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo with white circular background -->
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="relative w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-md transition-transform duration-300 group-hover:scale-105">
+          <img 
+            src="/logos/logo-transparent-scaled.png" 
+            alt="Adullam Academy Logo" 
+            class="h-10 w-auto"
+          />
+        </div>
+        <span class="text-xl font-bold text-white hidden sm:block">
+          Adullam Academy
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <a 
+            href={link.href}
+            class:list={[
+              "relative text-white/80 hover:text-white font-medium transition-colors duration-300",
+              "after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5",
+              "after:bg-gold-500 after:origin-left after:scale-x-0 after:transition-transform after:duration-300",
+              "hover:after:scale-x-100",
+              currentPath === link.href && "text-white after:scale-x-100"
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="hidden lg:flex items-center gap-4">
+        <a 
+          href="#"
+          class="px-4 py-2 text-white/80 hover:text-white font-medium transition-colors duration-300 flex items-center gap-2"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+          </svg>
+          Launch Course
+        </a>
+        <a 
+          href="https://obaodelana.fillout.com/aa"
+          class="btn-primary"
+        >
+          Register
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        id="mobile-menu-btn"
+        class="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors duration-300"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div 
+      id="mobile-menu"
+      class="lg:hidden hidden overflow-hidden transition-all duration-500 ease-out"
+    >
+      <div class="py-4 space-y-2 border-t border-white/10">
+        {navLinks.map((link) => (
+          <a 
+            href={link.href}
+            class:list={[
+              "block px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300 font-medium",
+              currentPath === link.href && "text-white bg-white/5"
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+        
+        <div class="pt-4 space-y-3 px-4">
+          <a 
+            href="#"
+            class="flex items-center justify-center gap-2 w-full py-3 text-white/80 hover:text-white border border-white/20 rounded-lg transition-all duration-300"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+            </svg>
+            Launch Course
+          </a>
+          <a 
+            href="https://obaodelana.fillout.com/aa"
+            class="btn-primary block text-center w-full"
+          >
+            Register
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  /**
+   * Header Interactivity
+   * 
+   * Handles:
+   * - Mobile menu toggle with smooth animation
+   */
+
+  function initHeader() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    let isMenuOpen = false;
+
+    // Toggle mobile menu
+    mobileMenuBtn?.addEventListener('click', () => {
+      isMenuOpen = !isMenuOpen;
+      
+      if (isMenuOpen) {
+        mobileMenu?.classList.remove('hidden');
+        // Trigger reflow for animation
+        mobileMenu?.offsetHeight;
+        mobileMenu?.classList.add('max-h-96');
+      } else {
+        mobileMenu?.classList.remove('max-h-96');
+        setTimeout(() => {
+          mobileMenu?.classList.add('hidden');
+        }, 300);
+      }
+
+      menuIcon?.classList.toggle('hidden', isMenuOpen);
+      closeIcon?.classList.toggle('hidden', !isMenuOpen);
+      mobileMenuBtn?.setAttribute('aria-expanded', String(isMenuOpen));
+    });
+  }
+
+  // Initialize on DOM ready
+  document.addEventListener('DOMContentLoaded', initHeader);
+  
+  // Re-initialize on Astro page transitions
+  document.addEventListener('astro:page-load', initHeader);
+</script>

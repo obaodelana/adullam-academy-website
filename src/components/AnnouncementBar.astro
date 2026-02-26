@@ -1,0 +1,102 @@
+---
+/**
+ * AnnouncementBar Component
+ * 
+ * A sticky banner at the top of the page displaying important announcements
+ * such as cohort start dates and registration deadlines.
+ * 
+ * Features:
+ * - Dismissible (saves to localStorage)
+ * - Animated gradient background
+ * - Mobile responsive
+ * 
+ * Props:
+ * @prop {string} message - The announcement text to display
+ * @prop {string} link - URL for the call-to-action
+ * @prop {string} linkText - Text for the CTA button
+ * @prop {boolean} dismissible - Whether the bar can be dismissed (default: true)
+ */
+
+interface Props {
+  message: string;
+  link?: string;
+  linkText?: string;
+  dismissible?: boolean;
+}
+
+const { 
+  message, 
+  link = "https://obaodelana.fillout.com/aa", 
+  linkText = "Register Now!",
+  dismissible = true 
+} = Astro.props;
+---
+
+<div 
+  id="announcement-bar"
+  class="relative bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 bg-[length:200%_100%] animate-gradient text-navy-900 py-2.5 px-4 text-center text-sm font-medium z-50"
+>
+  <div class="container mx-auto flex items-center justify-center gap-2 flex-wrap">
+    <span class="inline-flex items-center gap-2">
+      <svg class="w-4 h-4 animate-bounce-soft" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd" />
+      </svg>
+      {message}
+    </span>
+    {link && (
+      <a 
+        href={link}
+        class="inline-flex items-center gap-1 bg-navy-900 text-gold-400 px-3 py-1 rounded-full text-xs font-bold hover:bg-navy-800 transition-colors duration-300"
+      >
+        {linkText}
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    )}
+  </div>
+  
+  {dismissible && (
+    <button
+      id="dismiss-announcement"
+      class="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 hover:bg-navy-900/10 rounded-full transition-colors duration-300"
+      aria-label="Dismiss announcement"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  )}
+</div>
+
+<script>
+  /**
+   * Announcement Bar Dismissal Logic
+   * 
+   * Handles:
+   * - Checking localStorage for dismissed state
+   * - Hiding the bar when dismissed
+   * - Persisting the dismissed state
+   */
+
+  const STORAGE_KEY = 'aa-announcement-dismissed';
+
+  function initAnnouncementBar() {
+    const bar = document.getElementById('announcement-bar');
+    const dismissBtn = document.getElementById('dismiss-announcement');
+
+    if (!bar) return;
+
+    if (localStorage.getItem(STORAGE_KEY) === 'true') {
+      bar.classList.add('hidden');
+    }
+
+    dismissBtn?.addEventListener('click', () => {
+      bar.classList.add('hidden');
+      localStorage.setItem(STORAGE_KEY, 'true');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initAnnouncementBar);
+  document.addEventListener('astro:page-load', initAnnouncementBar);
+</script>

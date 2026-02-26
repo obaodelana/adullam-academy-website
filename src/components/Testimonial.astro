@@ -1,0 +1,92 @@
+---
+/**
+ * Testimonial Component
+ * 
+ * Displays a single testimonial with quote, attribution, and optional photo.
+ * Can be used individually or in a carousel/grid.
+ * 
+ * Features:
+ * - Quote styling with decorative marks
+ * - Avatar support
+ * - Role/title display
+ * - Subtle float animation
+ * - Glassmorphism card design
+ * 
+ * Props:
+ * @prop {string} quote - The testimonial text
+ * @prop {string} name - Person's name
+ * @prop {string} role - Person's role (Parent, Student, etc.)
+ * @prop {string} image - Avatar image URL (optional)
+ * @prop {number} delay - Animation delay for staggered reveals
+ */
+
+interface Props {
+  quote: string;
+  name: string;
+  role: string;
+  image?: string;
+  delay?: number;
+}
+
+const { quote, name, role, image, delay = 0 } = Astro.props;
+
+// Generate initials for avatar fallback
+const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+---
+
+<div 
+  class="group relative p-8 rounded-2xl bg-white shadow-lg shadow-navy-900/5 card-hover animate-on-scroll"
+  style={`animation-delay: ${delay}s;`}
+>
+  <!-- Quote mark decoration -->
+  <div class="absolute -top-4 -left-2 text-7xl text-gold-500/20 font-serif leading-none select-none">
+    "
+  </div>
+
+  <!-- Quote text -->
+  <blockquote class="relative z-10 text-navy-800 text-lg leading-relaxed mb-6">
+    {quote}
+  </blockquote>
+
+  <!-- Attribution -->
+  <div class="flex items-center gap-4">
+    <!-- Avatar -->
+    <div class="relative">
+      {image ? (
+        <img 
+          src={image} 
+          alt={name}
+          class="w-14 h-14 rounded-full object-cover ring-2 ring-gold-500/20"
+        />
+      ) : (
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center ring-2 ring-gold-500/20">
+          <span class="text-navy-900 font-bold text-lg">{initials}</span>
+        </div>
+      )}
+      <!-- Online indicator decoration -->
+      <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+        <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Name & Role -->
+    <div>
+      <p class="font-bold text-navy-900">{name}</p>
+      <p class="text-sm text-navy-600/70">{role}</p>
+    </div>
+  </div>
+
+  <!-- Star rating decoration -->
+  <div class="absolute top-6 right-6 flex gap-1">
+    {Array.from({ length: 5 }).map(() => (
+      <svg class="w-4 h-4 text-gold-500" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+      </svg>
+    ))}
+  </div>
+
+  <!-- Hover accent line -->
+  <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gold-500 to-gold-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-b-2xl"></div>
+</div>

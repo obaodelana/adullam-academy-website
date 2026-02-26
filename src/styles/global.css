@@ -1,0 +1,587 @@
+/**
+ * Global Styles for Adullam Academy
+ * 
+ * This file contains:
+ * - Tailwind CSS v4 imports
+ * - Custom theme configuration (colors, fonts, animations)
+ * - Base styles and CSS custom properties
+ * - Utility classes for animations
+ * 
+ * Color Palette:
+ * - Navy (primary): Deep blues for trust and professionalism
+ * - Gold (accent): Royal tones for Kingdom/excellence theme
+ * - Cream (background): Warm, welcoming feel
+ * - Electric Blue (interactive): Tech/innovation energy
+ */
+
+@import "tailwindcss";
+
+/* ============================================
+   CUSTOM THEME CONFIGURATION
+   ============================================ */
+
+@theme {
+  /* Navy - Primary color palette */
+  --color-navy-950: #050d1a;
+  --color-navy-900: #0a1628;
+  --color-navy-800: #0f2744;
+  --color-navy-700: #1a365d;
+  --color-navy-600: #234876;
+  --color-navy-500: #2d5a8f;
+
+  /* Gold - Accent color palette */
+  --color-gold-600: #b8942f;
+  --color-gold-500: #d4a853;
+  --color-gold-400: #e5bc6a;
+  --color-gold-300: #f0d08a;
+  --color-gold-200: #f7e4b8;
+
+  /* Cream - Background tones */
+  --color-cream: #faf8f5;
+  --color-cream-dark: #f5f0e8;
+
+  /* Electric Blue - Interactive/tech accent */
+  --color-electric-500: #3b82f6;
+  --color-electric-400: #60a5fa;
+  --color-electric-300: #93c5fd;
+
+  /* Fonts */
+  --font-heading: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Custom animations */
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
+  --animate-fade-in-down: fade-in-down 0.6s ease-out forwards;
+  --animate-fade-in-left: fade-in-left 0.6s ease-out forwards;
+  --animate-fade-in-right: fade-in-right 0.6s ease-out forwards;
+  --animate-scale-in: scale-in 0.5s ease-out forwards;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-typing: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  --animate-slide-up: slide-up 0.5s ease-out forwards;
+  --animate-bounce-soft: bounce-soft 2s ease-in-out infinite;
+  --animate-spin-slow: spin 8s linear infinite;
+  --animate-gradient: gradient-shift 8s ease infinite;
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(212, 168, 83, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(212, 168, 83, 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--color-gold-500);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce-soft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-navy-900);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* ============================================
+   GLASSMORPHISM UTILITIES
+   ============================================ */
+
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  background: rgba(10, 22, 40, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-gold {
+  background: rgba(212, 168, 83, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 168, 83, 0.3);
+}
+
+/* ============================================
+   GRADIENT UTILITIES
+   ============================================ */
+
+.gradient-navy {
+  background: linear-gradient(135deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%);
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold-500) 0%, var(--color-gold-300) 100%);
+}
+
+.gradient-hero {
+  background: linear-gradient(180deg, var(--color-navy-950) 0%, var(--color-navy-800) 50%, var(--color-navy-700) 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-gold-400) 0%, var(--color-gold-500) 50%, var(--color-gold-300) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-animated {
+  background: linear-gradient(270deg, var(--color-navy-800), var(--color-navy-600), var(--color-navy-800));
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* ============================================
+   SCROLL ANIMATION UTILITIES
+   ============================================ */
+
+/* Elements with these classes start invisible and animate when [data-visible] is added */
+.animate-on-scroll {
+  opacity: 0;
+}
+
+.animate-on-scroll[data-visible="true"] {
+  animation: var(--animate-fade-in-up);
+}
+
+.animate-on-scroll-left {
+  opacity: 0;
+}
+
+.animate-on-scroll-left[data-visible="true"] {
+  animation: var(--animate-fade-in-left);
+}
+
+.animate-on-scroll-right {
+  opacity: 0;
+}
+
+.animate-on-scroll-right[data-visible="true"] {
+  animation: var(--animate-fade-in-right);
+}
+
+.animate-on-scroll-scale {
+  opacity: 0;
+}
+
+.animate-on-scroll-scale[data-visible="true"] {
+  animation: var(--animate-scale-in);
+}
+
+/* Staggered animation delays for lists */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+
+.btn-primary {
+  @apply px-6 py-3 bg-gold-500 text-white font-semibold rounded-lg;
+  @apply transition-all duration-300 ease-out;
+  @apply hover:bg-gold-400 hover:shadow-lg hover:shadow-gold-500/30;
+  @apply hover:-translate-y-0.5;
+  @apply active:translate-y-0 active:shadow-md;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-transparent text-white font-semibold rounded-lg;
+  @apply border-2 border-white/30;
+  @apply transition-all duration-300 ease-out;
+  @apply hover:bg-white/10 hover:border-white/50;
+  @apply hover:-translate-y-0.5;
+}
+
+.btn-outline-gold {
+  @apply px-6 py-3 bg-transparent text-gold-500 font-semibold rounded-lg;
+  @apply border-2 border-gold-500;
+  @apply transition-all duration-300 ease-out;
+  @apply hover:bg-gold-500 hover:text-navy-900;
+  @apply hover:-translate-y-0.5;
+}
+
+/* ============================================
+   CARD HOVER EFFECTS
+   ============================================ */
+
+.card-hover {
+  @apply transition-all duration-500 ease-out;
+}
+
+.card-hover:hover {
+  @apply -translate-y-2 shadow-2xl;
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 30px rgba(212, 168, 83, 0.2);
+}
+
+/* ============================================
+   SECTION DIVIDERS & TRANSITIONS
+   ============================================ */
+
+.section-divider-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.section-divider-wave svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 60px;
+}
+
+.section-divider-wave-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.section-divider-wave-top svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 60px;
+}
+
+/* Angled divider */
+.section-divider-angle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  overflow: hidden;
+}
+
+.section-divider-angle::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-cream);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+}
+
+/* ============================================
+   ENHANCED SHADOWS
+   ============================================ */
+
+.shadow-soft {
+  box-shadow: 0 4px 20px rgba(10, 22, 40, 0.08);
+}
+
+.shadow-soft-lg {
+  box-shadow: 0 8px 40px rgba(10, 22, 40, 0.12);
+}
+
+.shadow-gold {
+  box-shadow: 0 4px 20px rgba(212, 168, 83, 0.2);
+}
+
+.shadow-gold-lg {
+  box-shadow: 0 8px 40px rgba(212, 168, 83, 0.25);
+}
+
+.shadow-inset-soft {
+  box-shadow: inset 0 2px 4px rgba(10, 22, 40, 0.05);
+}
+
+/* ============================================
+   TEXT UTILITIES
+   ============================================ */
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(10, 22, 40, 0.1);
+}
+
+.text-shadow-md {
+  text-shadow: 0 2px 4px rgba(10, 22, 40, 0.15);
+}
+
+.text-shadow-gold {
+  text-shadow: 0 0 20px rgba(212, 168, 83, 0.5);
+}
+
+/* ============================================
+   NOISE TEXTURE OVERLAY
+   ============================================ */
+
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================
+   DECORATIVE ELEMENTS
+   ============================================ */
+
+.dot-pattern {
+  background-image: radial-gradient(circle, var(--color-gold-500) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.line-accent {
+  position: relative;
+}
+
+.line-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-500), transparent);
+  border-radius: 2px;
+}
+
+/* ============================================
+   TEXT SELECTION
+   ============================================ */
+
+::selection {
+  background-color: var(--color-gold-500);
+  color: var(--color-navy-900);
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-navy-900);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-500);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-400);
+}
+
+/* ============================================
+   FOCUS STYLES (Accessibility)
+   ============================================ */
+
+:focus-visible {
+  outline: 2px solid var(--color-gold-500);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   RESPONSIVE TYPOGRAPHY
+   ============================================ */
+
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1536px) {
+  html {
+    font-size: 18px;
+  }
+}

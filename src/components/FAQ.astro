@@ -1,0 +1,176 @@
+---
+/**
+ * FAQ Component
+ * 
+ * Accordion-style FAQ section with animated open/close.
+ * Supports single or multiple open items.
+ * 
+ * Features:
+ * - Smooth height animation
+ * - Icon rotation on toggle
+ * - Keyboard accessible
+ * - Single/multiple open modes
+ * - Grouped by category (optional)
+ * 
+ * Props:
+ * @prop {Array} items - Array of FAQ objects with question and answer
+ * @prop {boolean} allowMultiple - Allow multiple items open at once
+ * @prop {string} title - Section title (optional)
+ */
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FAQItem[];
+  allowMultiple?: boolean;
+  title?: string;
+}
+
+const { 
+  items, 
+  allowMultiple = false,
+  title = "Frequently Asked Questions"
+} = Astro.props;
+---
+
+<div class="space-y-4" data-faq-container data-allow-multiple={allowMultiple}>
+  {title && (
+    <h2 class="text-3xl font-bold text-navy-900 mb-8 text-center">{title}</h2>
+  )}
+  
+  {items.map((item, index) => (
+    <div 
+      class="faq-item bg-white rounded-xl shadow-sm overflow-hidden animate-on-scroll border border-navy-100/50"
+      style={`animation-delay: ${index * 0.1}s;`}
+      data-faq-item
+    >
+      <!-- Question (Button) -->
+      <button
+        class="faq-trigger w-full flex items-center justify-between p-6 text-left hover:bg-cream-dark/50 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-inset"
+        aria-expanded="false"
+        aria-controls={`faq-answer-${index}`}
+      >
+        <span class="text-lg font-semibold text-navy-900 pr-4">
+          {item.question}
+        </span>
+        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/10 flex items-center justify-center transition-transform duration-300 faq-icon">
+          <svg class="w-5 h-5 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </span>
+      </button>
+      
+      <!-- Answer -->
+      <div 
+        id={`faq-answer-${index}`}
+        class="faq-content overflow-hidden transition-all duration-500 ease-out"
+        style="max-height: 0;"
+      >
+        <div class="px-6 pb-6 pt-0">
+          <div class="prose prose-navy max-w-none text-navy-700/80 leading-relaxed">
+            <Fragment set:html={item.answer} />
+          </div>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .faq-item[data-open="true"] .faq-icon {
+    transform: rotate(180deg);
+  }
+  
+  .faq-item[data-open="true"] .faq-trigger {
+    background-color: rgba(250, 248, 245, 0.5);
+  }
+</style>
+
+<script>
+  /**
+   * FAQ Accordion Functionality
+   * 
+   * Handles:
+   * - Toggle open/close on click
+   * - Keyboard navigation (Enter/Space)
+   * - Single or multiple open items
+   * - Smooth height animation
+   * - ARIA attribute updates
+   */
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initFAQ();
+  });
+
+  // Re-init on Astro page transitions
+  document.addEventListener('astro:page-load', () => {
+    initFAQ();
+  });
+
+  function initFAQ() {
+    const containers = document.querySelectorAll('[data-faq-container]');
+    
+    containers.forEach((container) => {
+      const allowMultiple = container.getAttribute('data-allow-multiple') === 'true';
+      const items = container.querySelectorAll('[data-faq-item]');
+      
+      items.forEach((item) => {
+        const trigger = item.querySelector('.faq-trigger');
+        const content = item.querySelector('.faq-content') as HTMLElement;
+        
+        if (!trigger || !content) return;
+
+        trigger.addEventListener('click', () => {
+          const isOpen = item.getAttribute('data-open') === 'true';
+          
+          // Close other items if not allowing multiple
+          if (!allowMultiple && !isOpen) {
+            items.forEach((otherItem) => {
+              if (otherItem !== item) {
+                closeItem(otherItem);
+              }
+            });
+          }
+          
+          // Toggle current item
+          if (isOpen) {
+            closeItem(item);
+          } else {
+            openItem(item);
+          }
+        });
+
+        // Keyboard support
+        trigger.addEventListener('keydown', (e: Event) => {
+          const keyEvent = e as KeyboardEvent;
+          if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
+            e.preventDefault();
+            (trigger as HTMLElement).click();
+          }
+        });
+      });
+    });
+  }
+
+  function openItem(item: Element) {
+    const content = item.querySelector('.faq-content') as HTMLElement;
+    const trigger = item.querySelector('.faq-trigger');
+    const inner = content.firstElementChild as HTMLElement;
+    
+    item.setAttribute('data-open', 'true');
+    trigger?.setAttribute('aria-expanded', 'true');
+    content.style.maxHeight = inner.offsetHeight + 'px';
+  }
+
+  function closeItem(item: Element) {
+    const content = item.querySelector('.faq-content') as HTMLElement;
+    const trigger = item.querySelector('.faq-trigger');
+    
+    item.setAttribute('data-open', 'false');
+    trigger?.setAttribute('aria-expanded', 'false');
+    content.style.maxHeight = '0';
+  }
+</script>

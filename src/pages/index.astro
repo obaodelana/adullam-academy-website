@@ -1,0 +1,250 @@
+---
+/**
+ * Homepage
+ * 
+ * The main landing page for Adullam Academy featuring:
+ * - Hero section with animated background
+ * - "What is Adullam Academy?" introduction
+ * - "Our Approach" feature cards
+ * - Testimonials section
+ * - Call-to-action banner
+ * 
+ * Content is pulled from markdown files and content collections.
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import Testimonial from '../components/Testimonial.astro';
+import CTA from '../components/CTA.astro';
+import { getCollection } from 'astro:content';
+
+// Fetch testimonials from content collection
+const testimonials = await getCollection('testimonials', ({ data }) => {
+  return data.published === true;
+});
+
+// Sort by order
+const sortedTestimonials = testimonials.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
+
+// Our Approach data
+const approachItems = [
+  {
+    number: 1,
+    title: "Learn by Building",
+    description: "Students don't just consume—they create. Each 6-week bootcamp guides them through building a real, working digital solution using industry-standard tools.",
+  },
+  {
+    number: 2,
+    title: "Spirit-Led Innovation",
+    description: "Every session begins with prayer and ends with a \"Wisdom Cache\" rooted in Scripture—grounding creativity in God's Word.",
+  },
+  {
+    number: 3,
+    title: "Team-Centred Projects",
+    description: "Students work in small groups to brainstorm, design, and develop a solution to a real-world problem—building collaboration and leadership skills.",
+  },
+  {
+    number: 4,
+    title: "Designed for Real Impact",
+    description: "Our bootcamps are structured, focused, and age-appropriate. Students leave with a working prototype, new technical skills, and a renewed sense of purpose.",
+  },
+];
+---
+
+<BaseLayout 
+  title="Raising Kingdom Visionaries"
+  description="Adullam Academy is a technocentric school of innovation that teaches kids and teenagers aged 8-18 how to build apps and AI-powered solutions with the aim of raising a generation of Kingdom-first tech leaders."
+>
+  <!-- Hero Section -->
+  <Hero 
+    headline="Raising Kingdom Visionaries"
+    subtext="Equipping the next generation of innovators to build real-world solutions, rooted in God's wisdom and powered by code."
+    primaryCTA="Register Now"
+    primaryLink="https://obaodelana.fillout.com/aa"
+    secondaryCTA="Learn More"
+    secondaryLink="/bootcamp"
+  />
+
+  <!-- What is Adullam Academy Section -->
+  <section id="about" class="py-24 lg:py-32 bg-cream relative">
+    <!-- Wave divider at top -->
+    <div class="section-divider-wave-top">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="fill-navy-900">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+      </svg>
+    </div>
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <SectionHeader 
+          eyebrow="Welcome"
+          title="What is Adullam Academy?"
+        />
+        
+        <p class="text-xl lg:text-2xl text-navy-700 leading-relaxed animate-on-scroll">
+          Adullam Academy is a <span class="text-gold-600 font-semibold">technocentric school of innovation</span> that teaches kids and teenagers aged 8-18 how to build apps and AI-powered solutions with the aim of raising a generation of <span class="text-gold-600 font-semibold">Kingdom-first tech leaders</span>.
+        </p>
+
+        <!-- Key differentiators -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+          <div class="p-6 rounded-xl bg-white shadow-sm border border-navy-100/50 animate-on-scroll" style="animation-delay: 0.1s;">
+            <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-gold-500/10 flex items-center justify-center">
+              <svg class="w-7 h-7 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-navy-900 mb-2">Real Skills</h3>
+            <p class="text-navy-600/80 text-sm">Industry-standard tools and practices used by professional developers</p>
+          </div>
+          
+          <div class="p-6 rounded-xl bg-white shadow-sm border border-navy-100/50 animate-on-scroll" style="animation-delay: 0.2s;">
+            <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-gold-500/10 flex items-center justify-center">
+              <svg class="w-7 h-7 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-navy-900 mb-2">Faith Integration</h3>
+            <p class="text-navy-600/80 text-sm">Scripture and prayer woven into every session and project</p>
+          </div>
+          
+          <div class="p-6 rounded-xl bg-white shadow-sm border border-navy-100/50 animate-on-scroll" style="animation-delay: 0.3s;">
+            <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-gold-500/10 flex items-center justify-center">
+              <svg class="w-7 h-7 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-navy-900 mb-2">Team Learning</h3>
+            <p class="text-navy-600/80 text-sm">Collaborative projects that build leadership and communication</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Approach Section -->
+  <section class="py-24 lg:py-32 gradient-navy relative overflow-hidden">
+    <!-- Wave divider at top -->
+    <div class="section-divider-wave-top">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="fill-cream">
+        <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"></path>
+      </svg>
+    </div>
+    <!-- Background decoration -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-gold-500/30 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-80 h-80 bg-electric-500/20 rounded-full blur-3xl"></div>
+    </div>
+    <!-- Noise texture -->
+    <div class="absolute inset-0 noise-overlay pointer-events-none"></div>
+
+    <div class="container mx-auto px-4 lg:px-8 relative z-10">
+      <SectionHeader 
+        eyebrow="How We Teach"
+        title="Our Approach"
+        description="A structured, faith-centered methodology designed to transform students into confident builders and Kingdom leaders."
+        light={true}
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-5xl mx-auto">
+        {approachItems.map((item, index) => (
+          <FeatureCard 
+            title={item.title}
+            description={item.description}
+            number={item.number}
+            delay={index * 0.15}
+          >
+            <Fragment slot="icon">
+              {item.number === 1 && (
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                </svg>
+              )}
+              {item.number === 2 && (
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              )}
+              {item.number === 3 && (
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              )}
+              {item.number === 4 && (
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
+              )}
+            </Fragment>
+          </FeatureCard>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-24 lg:py-32 bg-cream-dark relative">
+    <!-- Wave divider at top -->
+    <div class="section-divider-wave-top">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="fill-navy-700">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+      </svg>
+    </div>
+    <div class="container mx-auto px-4 lg:px-8">
+      <SectionHeader 
+        eyebrow="Testimonials"
+        title="What Parents & Students Say"
+        description="Real stories from families who have experienced the Adullam Academy difference."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {sortedTestimonials.map((testimonial, index) => {
+          const roleDisplay = testimonial.data.role === 'Student' && testimonial.data.age 
+            ? `${testimonial.data.role} (Age ${testimonial.data.age})`
+            : testimonial.data.role;
+          
+          return (
+            <Testimonial 
+              quote={testimonial.body}
+              name={testimonial.data.name}
+              role={roleDisplay}
+              image={testimonial.data.image}
+              delay={index * 0.1}
+            />
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTA 
+    headline="God Is Raising An Army of Giants"
+    subtext="Adullam Academy is a Kingdom-first preparation ground for exploits in Christ."
+    primaryCTA="Enrol Your Child"
+    primaryLink="/bootcamp"
+    secondaryCTA="See FAQs"
+    secondaryLink="/about#faq"
+  />
+
+  <!-- FAQ Preview -->
+  <section class="py-24 lg:py-32 bg-cream">
+    <div class="container mx-auto px-4 lg:px-8 text-center">
+      <SectionHeader 
+        eyebrow="Questions?"
+        title="Do You Have Any Questions?"
+        description="Visit our frequently asked questions page to learn more about the program."
+      />
+
+      <a 
+        href="/about#faq" 
+        class="btn-primary inline-flex items-center gap-2"
+      >
+        See FAQs
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

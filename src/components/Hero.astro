@@ -1,0 +1,224 @@
+---
+/**
+ * Hero Component
+ * 
+ * Full-screen hero section with animated background, headline,
+ * subtext, and call-to-action buttons.
+ * 
+ * Features:
+ * - Video/GIF background with fallback gradient
+ * - Animated floating particles
+ * - Typing effect on headline (optional)
+ * - Dual CTA buttons
+ * - Responsive sizing
+ * - Parallax-ready
+ * 
+ * Props:
+ * @prop {string} headline - Main headline text
+ * @prop {string} subtext - Supporting text below headline
+ * @prop {string} primaryCTA - Primary button text
+ * @prop {string} primaryLink - Primary button link
+ * @prop {string} secondaryCTA - Secondary button text
+ * @prop {string} secondaryLink - Secondary button link
+ * @prop {string} videoSrc - Video/GIF source (optional)
+ * @prop {boolean} showParticles - Show animated particles
+ */
+
+interface Props {
+  headline?: string;
+  subtext?: string;
+  primaryCTA?: string;
+  primaryLink?: string;
+  secondaryCTA?: string;
+  secondaryLink?: string;
+  videoSrc?: string;
+  showParticles?: boolean;
+}
+
+const {
+  headline = "Raising Kingdom Visionaries",
+  subtext = "Equipping the next generation of innovators to build real-world solutions, rooted in God's wisdom and powered by code.",
+  primaryCTA = "Register Now",
+  primaryLink = "https://obaodelana.fillout.com/aa",
+  secondaryCTA = "Learn More",
+  secondaryLink = "/bootcamp",
+  videoSrc,
+  showParticles = true,
+} = Astro.props;
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background Layer -->
+  <div class="absolute inset-0 z-0">
+    {videoSrc ? (
+      <!-- Video/GIF Background -->
+      <video 
+        autoplay 
+        muted 
+        loop 
+        playsinline
+        class="w-full h-full object-cover"
+      >
+        <source src={videoSrc} type="video/mp4" />
+      </video>
+      <div class="absolute inset-0 bg-navy-900/70"></div>
+    ) : (
+      <!-- Gradient Background with animated shapes -->
+      <div class="absolute inset-0 gradient-hero">
+        <!-- Animated gradient orbs -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-electric-500/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        <div class="absolute top-1/2 right-1/3 w-64 h-64 bg-gold-400/5 rounded-full blur-2xl animate-float" style="animation-delay: -1.5s;"></div>
+        <!-- Additional depth orb -->
+        <div class="absolute bottom-1/3 left-1/3 w-72 h-72 bg-electric-400/5 rounded-full blur-3xl animate-float" style="animation-delay: -4.5s;"></div>
+      </div>
+    )}
+    
+    <!-- Noise texture overlay for depth -->
+    <div class="absolute inset-0 noise-overlay"></div>
+    
+    <!-- Grid overlay for tech feel -->
+    <div 
+      class="absolute inset-0 opacity-[0.03]"
+      style="background-image: linear-gradient(rgba(212, 168, 83, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(212, 168, 83, 0.5) 1px, transparent 1px); background-size: 50px 50px;"
+    ></div>
+    
+    <!-- Radial gradient vignette -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-navy-950/50"></div>
+  </div>
+
+  <!-- Animated Particles -->
+  {showParticles && (
+    <div class="absolute inset-0 z-0 overflow-hidden" id="particles-container">
+      {Array.from({ length: 20 }).map((_, i) => (
+        <div 
+          class="particle absolute w-1 h-1 bg-gold-500/30 rounded-full"
+          style={`
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: float ${5 + Math.random() * 10}s ease-in-out infinite;
+            animation-delay: ${Math.random() * 5}s;
+          `}
+        ></div>
+      ))}
+    </div>
+  )}
+
+  <!-- Content -->
+  <div class="relative z-10 container mx-auto px-4 lg:px-8 text-center">
+    <div class="max-w-4xl mx-auto">
+      <!-- Eyebrow text -->
+      <p 
+        class="text-gold-400 font-semibold tracking-wider uppercase mb-6 animate-on-scroll"
+        style="animation-delay: 0.2s;"
+      >
+        Christian Coding & Innovation School
+      </p>
+
+      <!-- Main Headline -->
+      <h1 
+        class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight animate-on-scroll"
+        style="animation-delay: 0.4s;"
+      >
+        <span class="block">{headline.split(' ').slice(0, 1).join(' ')}</span>
+        <span class="gradient-text">{headline.split(' ').slice(1).join(' ')}</span>
+      </h1>
+
+      <!-- Subtext -->
+      <p 
+        class="text-lg sm:text-xl md:text-2xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed animate-on-scroll"
+        style="animation-delay: 0.6s;"
+      >
+        {subtext}
+      </p>
+
+      <!-- CTA Buttons -->
+      <div 
+        class="flex flex-col sm:flex-row gap-4 justify-center animate-on-scroll"
+        style="animation-delay: 0.8s;"
+      >
+        <a 
+          href={primaryLink}
+          class="btn-primary text-lg px-8 py-4 inline-flex items-center justify-center gap-2"
+        >
+          {primaryCTA}
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+        <a 
+          href={secondaryLink}
+          class="btn-secondary text-lg px-8 py-4 inline-flex items-center justify-center gap-2"
+        >
+          {secondaryCTA}
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Trust indicators - Enhanced with glassmorphism -->
+      <div 
+        class="mt-16 animate-on-scroll"
+        style="animation-delay: 1s;"
+      >
+        <div class="inline-flex flex-wrap justify-center gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl glass-dark">
+          <div class="text-center px-4 sm:px-6">
+            <div class="text-3xl sm:text-4xl font-bold text-gold-400 text-shadow-gold">8-18</div>
+            <div class="text-white/60 text-sm font-medium">Ages</div>
+          </div>
+          <div class="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent hidden sm:block"></div>
+          <div class="text-center px-4 sm:px-6">
+            <div class="text-3xl sm:text-4xl font-bold text-gold-400 text-shadow-gold">6</div>
+            <div class="text-white/60 text-sm font-medium">Weeks</div>
+          </div>
+          <div class="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent hidden sm:block"></div>
+          <div class="text-center px-4 sm:px-6">
+            <div class="text-3xl sm:text-4xl font-bold text-gold-400 text-shadow-gold">100%</div>
+            <div class="text-white/60 text-sm font-medium">Online</div>
+          </div>
+          <div class="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent hidden sm:block"></div>
+          <div class="text-center px-4 sm:px-6">
+            <div class="flex items-center justify-center gap-1 text-3xl sm:text-4xl font-bold text-gold-400 text-shadow-gold">
+              <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3zm-1 6h2v6h-2V8zm0 8h2v2h-2v-2z"/>
+              </svg>
+            </div>
+            <div class="text-white/60 text-sm font-medium">Faith-Based</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce-soft">
+    <a href="#about" class="block p-2 text-white/50 hover:text-white transition-colors duration-300">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  /* Additional particle styles */
+  .particle {
+    will-change: transform;
+  }
+  
+  @keyframes particle-drift {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(10px, -10px);
+    }
+    50% {
+      transform: translate(-5px, 15px);
+    }
+    75% {
+      transform: translate(-15px, -5px);
+    }
+  }
+</style>

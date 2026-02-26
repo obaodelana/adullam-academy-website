@@ -1,0 +1,130 @@
+---
+/**
+ * CTA (Call-to-Action) Component
+ * 
+ * A prominent section for driving user action, typically used
+ * near the bottom of pages or between major sections.
+ * 
+ * Features:
+ * - Bold headline with gradient text option
+ * - Supporting text
+ * - Primary and secondary CTA buttons
+ * - Background variations (gradient, image, pattern)
+ * - Parallax-ready
+ * 
+ * Props:
+ * @prop {string} headline - Main headline text
+ * @prop {string} subtext - Supporting text (optional)
+ * @prop {string} primaryCTA - Primary button text
+ * @prop {string} primaryLink - Primary button URL
+ * @prop {string} secondaryCTA - Secondary button text (optional)
+ * @prop {string} secondaryLink - Secondary button URL
+ * @prop {string} variant - Visual variant: 'gradient' | 'image' | 'minimal'
+ */
+
+interface Props {
+  headline?: string;
+  subtext?: string;
+  primaryCTA?: string;
+  primaryLink?: string;
+  secondaryCTA?: string;
+  secondaryLink?: string;
+  variant?: 'gradient' | 'image' | 'minimal';
+}
+
+const {
+  headline = "God Is Raising An Army of Giants",
+  subtext = "Adullam Academy is a Kingdom-first preparation ground for exploits in Christ.",
+  primaryCTA = "Enrol Your Child",
+  primaryLink = "/bootcamp",
+  secondaryCTA,
+  secondaryLink,
+  variant = 'gradient',
+} = Astro.props;
+
+const bgClasses = {
+  gradient: 'gradient-navy',
+  image: 'bg-navy-900',
+  minimal: 'bg-cream',
+};
+
+const textClasses = {
+  gradient: 'text-white',
+  image: 'text-white',
+  minimal: 'text-navy-900',
+};
+---
+
+<section class={`relative py-24 lg:py-32 overflow-hidden ${bgClasses[variant]}`}>
+  <!-- Background decorations -->
+  {variant === 'gradient' && (
+    <>
+      <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-gold-500/30 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-electric-500/20 rounded-full blur-3xl"></div>
+      </div>
+      <!-- Grid pattern -->
+      <div 
+        class="absolute inset-0 opacity-[0.02]"
+        style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 40px 40px;"
+      ></div>
+    </>
+  )}
+
+  <div class="container mx-auto px-4 lg:px-8 relative z-10">
+    <div class="max-w-3xl mx-auto text-center animate-on-scroll">
+      <!-- Decorative element -->
+      <div class="flex justify-center mb-6">
+        <div class="w-16 h-1 bg-gold-500 rounded-full"></div>
+      </div>
+
+      <!-- Headline -->
+      <h2 class={`text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight ${textClasses[variant]}`}>
+        {variant === 'minimal' ? (
+          <span class="gradient-text">{headline}</span>
+        ) : (
+          headline
+        )}
+      </h2>
+
+      <!-- Subtext -->
+      {subtext && (
+        <p class={`text-lg lg:text-xl mb-10 leading-relaxed ${variant === 'minimal' ? 'text-navy-600' : 'text-white/80'}`}>
+          {subtext}
+        </p>
+      )}
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a 
+          href={primaryLink}
+          class="btn-primary text-lg px-8 py-4 inline-flex items-center justify-center gap-2"
+        >
+          {primaryCTA}
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+        
+        {secondaryCTA && secondaryLink && (
+          <a 
+            href={secondaryLink}
+            class={variant === 'minimal' ? 'btn-outline-gold text-lg px-8 py-4' : 'btn-secondary text-lg px-8 py-4'}
+          >
+            {secondaryCTA}
+          </a>
+        )}
+      </div>
+
+      <!-- Trust badge -->
+      <div class="mt-12 flex items-center justify-center gap-2 text-sm">
+        <svg class={`w-5 h-5 ${variant === 'minimal' ? 'text-gold-600' : 'text-gold-400'}`} fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+        <span class={variant === 'minimal' ? 'text-navy-600' : 'text-white/70'}>
+          Safe, faith-based learning environment
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

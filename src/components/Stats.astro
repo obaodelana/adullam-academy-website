@@ -1,0 +1,120 @@
+---
+/**
+ * Stats Component
+ * 
+ * Displays key statistics/metrics in a visually appealing grid.
+ * Numbers animate when scrolled into view.
+ * 
+ * Features:
+ * - Animated counting effect
+ * - Icon support
+ * - Responsive grid layout
+ * - Custom suffix support (+, %, etc.)
+ * 
+ * Props:
+ * @prop {Array} stats - Array of stat objects
+ */
+
+interface Stat {
+  value: number;
+  label: string;
+  suffix?: string;
+  prefix?: string;
+}
+
+interface Props {
+  stats?: Stat[];
+}
+
+const defaultStats: Stat[] = [
+  { value: 3, label: "Bootcamps Yearly" },
+  { value: 6, label: "Weeks per Bootcamp" },
+  { value: 8, label: "Min Age", prefix: "" },
+  { value: 18, label: "Max Age", prefix: "" },
+];
+
+const { stats = defaultStats } = Astro.props;
+---
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+  {stats.map((stat, index) => (
+    <div 
+      class="group relative text-center p-6 lg:p-8 rounded-2xl bg-white shadow-soft hover:shadow-soft-lg border border-navy-100/30 animate-on-scroll-scale transition-all duration-500 hover:-translate-y-1 overflow-hidden"
+      style={`animation-delay: ${index * 0.1}s;`}
+      data-stat
+    >
+      <!-- Decorative top accent line -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      
+      <!-- Background decoration -->
+      <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gold-500/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+      
+      <div class="relative">
+        <div class="text-4xl lg:text-5xl font-extrabold text-navy-900 mb-2 group-hover:text-navy-800 transition-colors duration-300">
+          <span class="stat-prefix">{stat.prefix || ''}</span>
+          <span 
+            class="stat-value" 
+            data-target={stat.value}
+            data-suffix={stat.suffix || ''}
+          >
+            0
+          </span>
+          <span class="stat-suffix text-gold-500">{stat.suffix || ''}</span>
+        </div>
+        <p class="text-navy-600/70 font-medium text-sm lg:text-base">{stat.label}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  /**
+   * Animated Counter Effect
+   * 
+   * Animates numbers from 0 to target value when
+   * the element enters the viewport.
+   */
+
+  const animateValue = (el: HTMLElement, start: number, end: number, duration: number) => {
+    let startTimestamp: number | null = null;
+    
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const current = Math.floor(progress * (end - start) + start);
+      el.textContent = current.toString();
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    
+    window.requestAnimationFrame(step);
+  };
+
+  const observeStats = () => {
+    const statElements = document.querySelectorAll('.stat-value');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.dataset.target || '0', 10);
+          
+          // Only animate once
+          if (!el.dataset.animated) {
+            el.dataset.animated = 'true';
+            animateValue(el, 0, target, 1500);
+          }
+          
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    statElements.forEach((el) => observer.observe(el));
+  };
+
+  document.addEventListener('DOMContentLoaded', observeStats);
+  document.addEventListener('astro:page-load', observeStats);
+</script>
