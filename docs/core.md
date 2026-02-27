@@ -29,8 +29,8 @@ Empowering the next generation of Kingdom visionaries to create.
 ## Our Approach
 
 1. We run **project-based bootcamps** three times a year.
-2. Each bootcamp lasts **6 weeks**, ending with the launch of a working app prototype.
+2. Each bootcamp lasts **8 weeks**, ending with the launch of a working app prototype.
 3. Students build projects using **industry-standard tools and libraries**, preparing them for real-world opportunities like internships.
 4. Our bootcamps emphasize **creative problem-solving and innovative thinking**. Students are grouped into teams, presented with a real-world problem, and challenged to brainstorm and develop a viable solution.
-5. The first three weeks focus on equipping students with the **technical knowledge and skills** needed to build a solution. The following two weeks are dedicated to allowing students conceive and build their own product, while the last week is reserved for refining and presenting their final product.
+5. The **first four** weeks focus on equipping students with the **technical knowledge and skills** needed to build a solution. The **following three** weeks are dedicated to allowing students conceive and build their own product, while the **last week** is reserved for refining and presenting their final product.
 6. Every session begins with **prayer** and a **Wisdom Cache**—a moment of reflection on Scripture that emphasizes the importance of the Word of God and how God’s Word informs every area of life.

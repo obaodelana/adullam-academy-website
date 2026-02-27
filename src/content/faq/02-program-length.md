@@ -5,8 +5,8 @@ category: "program"
 published: true
 ---
 
-Each bootcamp runs for **6 weeks**, with **weekly sessions of 2 hours**. There are **3 bootcamps each year**:
+Each bootcamp runs for **8 weeks**. Students meet asynchronously during the week and join **2-hour stand-ups on Saturdays or Sundays**. There are **3 bootcamps each year**:
 
-- February – April
-- May – July
-- August – October
+- Second Week of March – Second Week of May
+- First Week of June – First Week of August
+- First Week of September – First Week of November

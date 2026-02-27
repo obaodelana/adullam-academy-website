@@ -34,23 +34,23 @@ const sortedProjects = projects
 
 // Bootcamp schedule
 const bootcampSchedule = [
-  { period: "February – April", status: "upcoming" },
-  { period: "May – July", status: "upcoming" },
-  { period: "August – October", status: "active", note: "Current Cohort" },
+  { period: "Mar 14 – May 10, 2026", status: "active", note: "Next Cohort" },
+  { period: "Jun 6 – Aug 2, 2026", status: "upcoming" },
+  { period: "Sep 5 – Nov 1, 2026", status: "upcoming" },
 ];
 
 // Program stats
 const programStats = [
   { value: 3, label: "Bootcamps Yearly" },
-  { value: 6, label: "Weeks Each" },
-  { value: 2, label: "Hours per Session" },
+  { value: 8, label: "Weeks Each" },
+  { value: 2, label: "Hours per Stand-Up" },
   { value: 6, label: "Students per Team", prefix: "~" },
 ];
 ---
 
 <BaseLayout 
   title="Program"
-  description="Join our 6-week bootcamp where kids and teens aged 8-18 build real apps, games, and AI projects while growing in faith and technical skills."
+  description="Join our 8-week, faith-driven bootcamp where kids and teens aged 8-18 build real apps, games, and AI projects through asynchronous work sessions and weekly weekend stand-ups."
 >
   <!-- Hero Section -->
   <section class="relative min-h-[70vh] flex items-center gradient-hero overflow-hidden">
@@ -130,7 +130,7 @@ const programStats = [
         <SectionHeader 
           eyebrow="Program Structure"
           title="Project-Based Bootcamps"
-          description="Over 6 weeks, students work in teams to solve real-world problems by building working digital prototypes—equipping them with skills for both life and leadership."
+           description="Over 8 weeks, students work asynchronously in teams, gather for weekend stand-ups, and launch real prototypes that stretch both their technical and spiritual leadership."
         />
 
         <!-- Timeline -->
@@ -142,14 +142,14 @@ const programStats = [
             <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gold-300 -translate-x-1/2 hidden md:block"></div>
             
             <div class="space-y-8">
-              <!-- Week 1-3 -->
+              <!-- Year-Round Rhythm -->
               <div class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll">
                 <div class="md:w-1/2 md:text-right md:pr-8">
                   <div class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2">
-                    Weeks 1-3
+                    3 Cohorts Per Year
                   </div>
-                  <h4 class="text-lg font-bold text-navy-900">Technical Foundation</h4>
-                  <p class="text-navy-600/80">Students are equipped with the technical knowledge and skills needed to build a solution.</p>
+                  <h4 class="text-lg font-bold text-navy-900">Project-Based Cadence</h4>
+                  <p class="text-navy-600/80">We run immersive bootcamps three times a year so students can plan ahead, join when ready, and return to keep building bigger projects.</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-gold-500 flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg">
                   1
@@ -157,32 +157,47 @@ const programStats = [
                 <div class="md:w-1/2 md:pl-8"></div>
               </div>
 
-              <!-- Week 4-5 -->
-              <div class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll">
-                <div class="md:w-1/2 md:text-right md:pr-8 md:order-1 order-2"></div>
-                <div class="w-12 h-12 rounded-full bg-gold-500 flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg order-1 md:order-2">
-                  2
-                </div>
-                <div class="md:w-1/2 md:pl-8 order-3">
-                  <div class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2">
-                    Weeks 4-5
-                  </div>
-                  <h4 class="text-lg font-bold text-navy-900">Build Phase</h4>
-                  <p class="text-navy-600/80">Students conceive and build their own product, applying what they've learned.</p>
-                </div>
-              </div>
-
-              <!-- Week 6 -->
+              <!-- Week 1-4 -->
               <div class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll">
                 <div class="md:w-1/2 md:text-right md:pr-8">
                   <div class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2">
-                    Week 6
+                    Weeks 1-4
                   </div>
-                  <h4 class="text-lg font-bold text-navy-900">Launch & Present</h4>
-                  <p class="text-navy-600/80">Final week is reserved for refining and presenting their completed product.</p>
+                  <h4 class="text-lg font-bold text-navy-900">Technical Foundations</h4>
+                  <p class="text-navy-600/80">Students build skills with industry-standard tools, guided labs, and asynchronous work time reinforced by Wisdom Cache reflections and prayer.</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-gold-500 flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg">
+                  2
+                </div>
+                <div class="md:w-1/2 md:pl-8"></div>
+              </div>
+
+              <!-- Week 5-7 -->
+              <div class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll">
+                <div class="md:w-1/2 md:text-right md:pr-8 md:order-1 order-2"></div>
+                <div class="w-12 h-12 rounded-full bg-gold-500 flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg order-1 md:order-2">
                   3
+                </div>
+                <div class="md:w-1/2 md:pl-8 order-3">
+                  <div class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2">
+                    Weeks 5-7
+                  </div>
+                  <h4 class="text-lg font-bold text-navy-900">Build & Collaborate</h4>
+                  <p class="text-navy-600/80">Teams tackle real-world problems, brainstorm solutions, and develop working prototypes with instructor support during weekend stand-ups.</p>
+                </div>
+              </div>
+
+              <!-- Week 8 -->
+              <div class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll">
+                <div class="md:w-1/2 md:text-right md:pr-8">
+                  <div class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2">
+                    Week 8
+                  </div>
+                  <h4 class="text-lg font-bold text-navy-900">Launch & Present</h4>
+                  <p class="text-navy-600/80">Students polish their apps, prepare demos, and present final builds—showing technical rigor, creative thinking, and how faith guided their work.</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-gold-500 flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg">
+                  4
                 </div>
                 <div class="md:w-1/2 md:pl-8"></div>
               </div>
@@ -206,7 +221,7 @@ const programStats = [
       <SectionHeader 
         eyebrow="Schedule"
         title="Bootcamp Sessions"
-        description="We run three bootcamps per year. Each session meets weekly on Sundays for two hours."
+        description="We run three 8-week bootcamps per year. Students work asynchronously during the week and join 2-hour stand-ups on Saturdays or Sundays."
       />
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -226,7 +241,7 @@ const programStats = [
               </span>
             )}
             <p class="text-lg font-bold text-navy-900">{session.period}</p>
-            <p class="text-sm text-navy-600/70 mt-1">Sundays, 2:00 PM – 4:00 PM</p>
+            <p class="text-sm text-navy-600/70 mt-1">Saturday or Sunday stand-ups · 2 hours</p>
           </div>
         ))}
       </div>
