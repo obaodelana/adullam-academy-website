@@ -41,7 +41,7 @@ const { title, description, number, delay = 0 } = Astro.props;
   
   <!-- Number badge with enhanced styling -->
   {number && (
-    <div class="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-navy-900 font-bold text-xl flex items-center justify-center shadow-gold group-hover:scale-110 group-hover:shadow-gold-lg transition-all duration-300">
+    <div class="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-linear-to-br from-gold-400 to-gold-600 text-navy-900 font-bold text-xl flex items-center justify-center shadow-gold group-hover:scale-110 group-hover:shadow-gold-lg transition-all duration-300">
       {number}
     </div>
   )}

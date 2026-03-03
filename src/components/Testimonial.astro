@@ -59,7 +59,7 @@ const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
           class="w-14 h-14 rounded-full object-cover ring-2 ring-gold-500/40"
         />
       ) : (
-        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center ring-2 ring-gold-500/40 shadow-gold">
+        <div class="w-14 h-14 rounded-full bg-linear-to-br from-gold-400 to-gold-600 flex items-center justify-center ring-2 ring-gold-500/40 shadow-gold">
           <span class="text-navy-900 font-bold text-lg">{initials}</span>
         </div>
       )}
@@ -82,5 +82,5 @@ const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
   </div>
 
   <!-- Hover accent line -->
-  <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gold-500 to-gold-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-b-2xl"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-gold-500 to-gold-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-b-2xl"></div>
 </div>
