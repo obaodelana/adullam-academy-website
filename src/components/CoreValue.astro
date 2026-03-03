@@ -56,8 +56,8 @@ const { title, verse, reference, delay = 0 } = Astro.props;
     {reference}
   </span>
 
-  <!-- Verse text (expandable) -->
-  <div class="value-verse overflow-hidden transition-all duration-500" style="max-height: 0; opacity: 0;">
+<!-- Verse text (expandable) -->
+<div class="value-verse overflow-hidden transition-all duration-500">
     <p class="text-navy-600/80 text-sm italic leading-relaxed border-l-2 border-gold-400 pl-4">
       "{verse}"
     </p>
@@ -70,10 +70,13 @@ const { title, verse, reference, delay = 0 } = Astro.props;
 </div>
 
 <style>
-  [data-value-card][data-expanded="true"] .value-verse {
-    max-height: 200px;
-    opacity: 1;
-    margin-top: 1rem;
+  .value-verse {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+  }
+  [data-value-card] .value-verse {
+    transition-property: max-height, opacity, margin;
   }
 </style>
 
@@ -84,10 +87,6 @@ const { title, verse, reference, delay = 0 } = Astro.props;
    * Handles click to expand/collapse Scripture verse text.
    */
   
-  document.addEventListener('DOMContentLoaded', () => {
-    initValueCards();
-  });
-
   document.addEventListener('astro:page-load', () => {
     initValueCards();
   });
@@ -96,9 +95,21 @@ const { title, verse, reference, delay = 0 } = Astro.props;
     const cards = document.querySelectorAll('[data-value-card]');
     
     cards.forEach((card) => {
+      const verse = card.querySelector('.value-verse');
+      if (!verse) return;
+
+      const setState = (expanded: boolean) => {
+        card.setAttribute('data-expanded', expanded.toString());
+        verse.setAttribute('aria-hidden', (!expanded).toString());
+        verse.setAttribute('style', expanded 
+          ? `max-height: ${verse.scrollHeight}px; opacity: 1; margin-top: 1rem;`
+          : 'max-height: 0; opacity: 0; margin-top: 0;'
+        );
+      };
+
       card.addEventListener('click', () => {
         const isExpanded = card.getAttribute('data-expanded') === 'true';
-        card.setAttribute('data-expanded', (!isExpanded).toString());
+        setState(!isExpanded);
       });
     });
   }

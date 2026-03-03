@@ -101,10 +101,6 @@ const {
    * - ARIA attribute updates
    */
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initFAQ();
-  });
-
   // Re-init on Astro page transitions
   document.addEventListener('astro:page-load', () => {
     initFAQ();
