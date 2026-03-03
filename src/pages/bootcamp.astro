@@ -15,6 +15,7 @@ import SectionHeader from '../components/SectionHeader.astro';
 import ProjectShowcase from '../components/ProjectShowcase.astro';
 import Stats from '../components/Stats.astro';
 import CTA from '../components/CTA.astro';
+import { REGISTER_LINK } from '../data/links';
 import { getCollection } from 'astro:content';
 
 // Fetch projects from content collection
@@ -80,7 +81,7 @@ const programStats = [
           </p>
           <div class="flex flex-col sm:flex-row gap-4">
             <a 
-              href="https://obaodelana.fillout.com/aa"
+              href={REGISTER_LINK}
               class="btn-primary text-lg px-8 py-4 inline-flex items-center justify-center gap-2"
             >
               Register Now
@@ -241,7 +242,7 @@ const programStats = [
               </span>
             )}
             <p class="text-lg font-bold text-navy-900">{session.period}</p>
-            <p class="text-sm text-navy-600/70 mt-1">Saturday or Sunday stand-ups · 2 hours</p>
+            <p class="text-sm text-navy-600/70 mt-1">Sunday stand-ups · 2 hours</p>
           </div>
         ))}
       </div>
@@ -273,7 +274,7 @@ const programStats = [
     headline="Register Now!"
     subtext="The world needs more Kingdom-focused innovators. Your child could be one of them. Secure a spot in the next bootcamp and watch them grow in skill, confidence, and purpose."
     primaryCTA="Register Now"
-    primaryLink="https://obaodelana.fillout.com/aa"
+    primaryLink={REGISTER_LINK}
     secondaryCTA="Have Questions?"
     secondaryLink="/about#faq"
   />

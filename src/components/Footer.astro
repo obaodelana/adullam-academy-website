@@ -13,6 +13,8 @@
  * - Quick navigation links
  */
 
+import { REGISTER_LINK } from '../data/links';
+
 // Social links configuration
 const socialLinks = [
   {
@@ -83,7 +85,7 @@ const currentYear = new Date().getFullYear();
           ))}
           <li>
             <a 
-              href="https://obaodelana.fillout.com/aa"
+              href={REGISTER_LINK}
               class="text-gold-500 hover:text-gold-400 hover:pl-2 transition-all duration-300 inline-block font-medium"
             >
               Register Now
@@ -151,7 +153,7 @@ const currentYear = new Date().getFullYear();
             Ready to equip your child for the future?
           </p>
           <a 
-            href="https://obaodelana.fillout.com/aa"
+            href={REGISTER_LINK}
             class="btn-primary w-full text-center block"
           >
             Enrol Now

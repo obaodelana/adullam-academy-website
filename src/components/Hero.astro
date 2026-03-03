@@ -24,6 +24,8 @@
  * @prop {boolean} showParticles - Show animated particles
  */
 
+import { REGISTER_LINK } from '../data/links';
+
 interface Props {
   headline?: string;
   subtext?: string;
@@ -39,7 +41,7 @@ const {
   headline = "Raising Kingdom Visionaries",
   subtext = "Equipping the next generation of innovators to build real-world solutions, rooted in God's wisdom and powered by code.",
   primaryCTA = "Register Now",
-  primaryLink = "https://obaodelana.fillout.com/aa",
+  primaryLink = REGISTER_LINK,
   secondaryCTA = "Learn More",
   secondaryLink = "/bootcamp",
   videoSrc,

@@ -17,6 +17,8 @@
  * @prop {boolean} dismissible - Whether the bar can be dismissed (default: true)
  */
 
+import { REGISTER_LINK } from '../data/links';
+
 interface Props {
   message: string;
   link?: string;
@@ -26,7 +28,7 @@ interface Props {
 
 const { 
   message, 
-  link = "https://obaodelana.fillout.com/aa", 
+  link = REGISTER_LINK, 
   linkText = "Register Now!",
   dismissible = true 
 } = Astro.props;

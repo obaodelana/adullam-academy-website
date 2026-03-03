@@ -18,6 +18,7 @@ import SectionHeader from '../components/SectionHeader.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import TestimonialCarousel from '../components/TestimonialCarousel.astro';
 import CTA from '../components/CTA.astro';
+import { REGISTER_LINK } from '../data/links';
 import { getCollection } from 'astro:content';
 
 // Fetch testimonials from content collection
@@ -62,7 +63,7 @@ const approachItems = [
     headline="Raising Kingdom Visionaries"
     subtext="Equipping the next generation of innovators to build real-world solutions, rooted in God's wisdom and powered by code."
     primaryCTA="Register Now"
-    primaryLink="https://obaodelana.fillout.com/aa"
+    primaryLink={REGISTER_LINK}
     secondaryCTA="Learn More"
     secondaryLink="/bootcamp"
   />

@@ -13,6 +13,8 @@
  * - White circular background behind logo for visibility
  */
 
+import { REGISTER_LINK } from '../data/links';
+
 // Navigation links configuration
 const navLinks = [
   { href: "/bootcamp", label: "Program" },
@@ -74,7 +76,7 @@ const currentPath = Astro.url.pathname;
           Launch Course
         </a>
         <a 
-          href="https://obaodelana.fillout.com/aa"
+          href={REGISTER_LINK}
           class="btn-primary"
         >
           Register
@@ -126,7 +128,7 @@ const currentPath = Astro.url.pathname;
             Launch Course
           </a>
           <a 
-            href="https://obaodelana.fillout.com/aa"
+            href={REGISTER_LINK}
             class="btn-primary block text-center w-full"
           >
             Register
