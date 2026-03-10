@@ -20,7 +20,7 @@
 
 interface FAQItem {
   question: string;
-  answer: string;
+  answer: any; // MDX Content component
 }
 
 interface Props {
@@ -71,7 +71,7 @@ const {
       >
         <div class="px-6 pb-6 pt-0">
           <div class="prose prose-navy max-w-none text-navy-700/80 leading-relaxed">
-            <Fragment set:html={item.answer} />
+            <item.answer />
           </div>
         </div>
       </div>

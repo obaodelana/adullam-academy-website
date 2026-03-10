@@ -40,6 +40,7 @@ Field guide for any agent working inside the Adullam Academy website repo (`astr
   - `testimonials`: `name`, `role` (`Parent|Student|Pastor|Community Member`), optional `age`, `image`, `order`, `featured`, `published`, body = quote.
   - `projects`: `title`, `category` (`3D Game|2D Game|Mobile App|Website|AI Project`), `description`, optional `image`, `creators[]`, `session`, `order`, `featured`, `published`.
 - Markdown lives under `src/content/{collection}/`. Keep filenames kebab-case; order content via `order` frontmatter instead of manual sorting.
+- **Important**: Use `.mdx` extension for content collections to enable proper markdown rendering. Render content using `await faq.render()` and pass `Content` to components.
 
 ## Coding Standards
 - Prefer TypeScript frontmatter in `.astro` files. Declare `interface Props` and destructure defaults from `Astro.props`.

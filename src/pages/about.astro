@@ -23,12 +23,17 @@ const faqs = await getCollection('faq', ({ data }) => {
 });
 
 // Sort by order and transform for FAQ component
-const sortedFaqs = faqs
-  .sort((a, b) => (a.data.order || 99) - (b.data.order || 99))
-  .map(faq => ({
-    question: faq.data.question,
-    answer: faq.body,
-  }));
+const sortedFaqs = await Promise.all(
+  faqs
+    .sort((a, b) => (a.data.order || 99) - (b.data.order || 99))
+    .map(async (faq) => {
+      const { Content } = await faq.render();
+      return {
+        question: faq.data.question,
+        answer: Content,
+      };
+    })
+);
 
 // Core values data
 const coreValues = [
