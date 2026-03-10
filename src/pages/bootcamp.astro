@@ -12,7 +12,7 @@
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/SectionHeader.astro';
-import ProjectShowcase from '../components/ProjectShowcase.astro';
+// import ProjectShowcase from '../components/ProjectShowcase.astro';
 import Stats from '../components/Stats.astro';
 import CTA from '../components/CTA.astro';
 import { REGISTER_LINK } from '../data/links';
@@ -24,14 +24,14 @@ const projects = await getCollection('projects', ({ data }) => {
 });
 
 // Sort by order and transform for ProjectShowcase
-const sortedProjects = projects
-  .sort((a, b) => (a.data.order || 99) - (b.data.order || 99))
-  .map(p => ({
-    title: p.data.title,
-    category: p.data.category,
-    description: p.data.description,
-    image: p.data.image || `/images/projects/${p.data.category.toLowerCase().replace(' ', '-')}-placeholder.svg`,
-  }));
+// const sortedProjects = projects
+//   .sort((a, b) => (a.data.order || 99) - (b.data.order || 99))
+//   .map(p => ({
+//     title: p.data.title,
+//     category: p.data.category,
+//     description: p.data.description,
+//     image: p.data.image || `/images/projects/${p.data.category.toLowerCase().replace(' ', '-')}-placeholder.svg`,
+//   }));
 
 // Bootcamp schedule
 const bootcampSchedule = [
@@ -258,9 +258,9 @@ const programStats = [
   </section>
 
   <!-- What They Build Section -->
-  <section id="what-they-build" class="py-24 lg:py-32 gradient-navy relative overflow-hidden">
+  <!-- <section id="what-they-build" class="py-24 lg:py-32 gradient-navy relative overflow-hidden"> -->
     <!-- Background decoration -->
-    <div class="absolute inset-0 opacity-10">
+    <!-- <div class="absolute inset-0 opacity-10">
       <div class="absolute top-0 right-0 w-96 h-96 bg-gold-500/30 rounded-full blur-3xl"></div>
       <div class="absolute bottom-0 left-0 w-80 h-80 bg-electric-500/20 rounded-full blur-3xl"></div>
     </div>
@@ -274,8 +274,8 @@ const programStats = [
       />
 
       <ProjectShowcase projects={sortedProjects} showFilters={false} />
-    </div>
-  </section>
+    </div> -->
+  <!-- </section> -->
 
   <!-- Registration CTA -->
   <CTA 
