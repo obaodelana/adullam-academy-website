@@ -5,11 +5,4 @@ category: "program"
 published: true
 ---
 
-Students work in groups to create a **working digital prototype**, such as:
-
-- Mobile apps
-- 3D games
-- AI-based tools
-- Multi-page websites
-
-Projects use **real-world tools** to prepare them for future internships or opportunities.
+Students work in teams to build **multiple apps, games, and AI-powered solutions** throughout the bootcamp, and they create and launch a **working app prototype** by the end. Projects are built with **industry-standard tools and libraries**, preparing students for real-world opportunities like internships.

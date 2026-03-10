@@ -35,7 +35,7 @@ const sortedProjects = projects
 
 // Bootcamp schedule
 const bootcampSchedule = [
-  { period: "Mar 14 – May 10, 2026", status: "active", note: "Next Cohort" },
+  { period: "Mar 21 – May 17, 2026", status: "active", note: "Next Cohort" },
   { period: "Jun 6 – Aug 2, 2026", status: "upcoming" },
   { period: "Sep 5 – Nov 1, 2026", status: "upcoming" },
 ];
@@ -104,20 +104,13 @@ const programStats = [
         <!-- Decorative image placeholder -->
         <div class="hidden lg:block animate-on-scroll-right">
           <div class="relative">
-            <div class="absolute inset-0 bg-linear-to-br from-gold-500/20 to-electric-500/20 rounded-3xl blur-2xl"></div>
-            <div class="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10">
-              <!-- Lightbulb illustration -->
-              <div class="aspect-square flex items-center justify-center">
-                <div class="text-center">
-                  <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-linear-to-br from-gold-400 to-gold-600 flex items-center justify-center animate-pulse-glow">
-                    <svg class="w-16 h-16 text-navy-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                  </div>
-                  <p class="text-white/70 text-lg">Where ideas become reality</p>
-                </div>
-              </div>
-            </div>
+            <!-- Glow effect behind the gif -->
+            <div class="absolute -inset-4 bg-linear-to-br from-gold-500/30 to-electric-500/30 rounded-2xl blur-3xl opacity-75"></div>
+            <img
+              src="/images/maze.gif"
+              alt="Maze illustration"
+              class="relative w-full h-auto rounded-2xl shadow-2xl"
+            />
           </div>
         </div>
       </div>
@@ -158,14 +151,14 @@ const programStats = [
                 <div class="md:w-1/2 md:pl-8"></div>
               </div>
 
-              <!-- Week 1-4 -->
+              <!-- Week 1-2 -->
               <div class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll">
                 <div class="md:w-1/2 md:text-right md:pr-8">
                   <div class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2">
-                    Weeks 1-4
+                    Weeks 1-2
                   </div>
                   <h4 class="text-lg font-bold text-navy-900">Technical Foundations</h4>
-                  <p class="text-navy-600/80">Students build skills with industry-standard tools, guided labs, and asynchronous work time reinforced by Wisdom Cache reflections and prayer.</p>
+                  <p class="text-navy-600/80">Students build a working understanding of the core programming language and tools with guided labs and asynchronous work time.</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-gold-500 flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg">
                   2
@@ -173,15 +166,30 @@ const programStats = [
                 <div class="md:w-1/2 md:pl-8"></div>
               </div>
 
-              <!-- Week 5-7 -->
+              <!-- Week 3 -->
+              <div class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll">
+                <div class="md:w-1/2 md:text-right md:pr-8">
+                  <div class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2">
+                    Week 3
+                  </div>
+                  <h4 class="text-lg font-bold text-navy-900">Apply & Build</h4>
+                  <p class="text-navy-600/80">Students begin applying what they learned by building apps and working on real-world problems.</p>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-gold-500 flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg">
+                  3
+                </div>
+                <div class="md:w-1/2 md:pl-8"></div>
+              </div>
+
+              <!-- Week 4-7 -->
               <div class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll">
                 <div class="md:w-1/2 md:text-right md:pr-8 md:order-1 order-2"></div>
                 <div class="w-12 h-12 rounded-full bg-gold-500 flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg order-1 md:order-2">
-                  3
+                  4
                 </div>
                 <div class="md:w-1/2 md:pl-8 order-3">
                   <div class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2">
-                    Weeks 5-7
+                    Weeks 4-7
                   </div>
                   <h4 class="text-lg font-bold text-navy-900">Build & Collaborate</h4>
                   <p class="text-navy-600/80">Teams tackle real-world problems, brainstorm solutions, and develop working prototypes with instructor support during weekend stand-ups.</p>
@@ -198,7 +206,7 @@ const programStats = [
                   <p class="text-navy-600/80">Students polish their apps, prepare demos, and present final builds—showing technical rigor, creative thinking, and how faith guided their work.</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-gold-500 flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg">
-                  4
+                  5
                 </div>
                 <div class="md:w-1/2 md:pl-8"></div>
               </div>

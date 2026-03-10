@@ -1,8 +1,8 @@
 ---
 question: "How rigorous is the program?"
-order: 6
+order: 7
 category: "program"
 published: true
 ---
 
-The program is **engaging and challenging**, but not overwhelming. It is structured to meet students where they are—balancing learning, fun, and spiritual formation. All content is age-appropriate and paced to ensure students can succeed without extra stress.
+The program is designed to be **engaging and challenging**, while still being supportive and age-appropriate. Students are coached through the process, with a strong emphasis on learning by building.

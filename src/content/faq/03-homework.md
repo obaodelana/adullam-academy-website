@@ -1,8 +1,8 @@
 ---
-question: "Will students need to work outside class time?"
+question: "What does the schedule look like?"
 order: 3
 category: "program"
 published: true
 ---
 
-Students are encouraged to continue learning outside of class time for the best experience. However, the program is **self-contained**. Projects are designed to be completed within the class period.
+The program runs **asynchronously for 8 weeks**, with weekly live **stand-ups on Saturdays or Sundays for 2 hours**. This gives students time to collaborate with their team and receive live support from instructors.

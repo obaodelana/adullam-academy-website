@@ -5,4 +5,4 @@ category: "general"
 published: true
 ---
 
-Not necessarily. While we use digital tools to express creativity, we focus on **problem-solving, design thinking, and Kingdom innovation**. All students, regardless of experience, will be guided in the process.
+Not necessarily. While students learn real tools for building digital products, the program is centered on **creative problem-solving**, **systematic innovation**, and purpose-driven thinking. Students are guided step-by-step, regardless of starting level.

@@ -1,12 +1,11 @@
 ---
 question: "What makes this program spiritually unique?"
-order: 7
+order: 9
 category: "spiritual"
 published: true
 ---
 
-Every session includes:
-
-- A **prayer time** asking God for wisdom and inspiration.
-- A closing **Wisdom Cache**, where Scripture is explored for insight on innovation, leadership, and character.
-- **Core values** like servant leadership, excellence, and Kingdom-minded living are built into the curriculum and project themes.
+Adullam Academy integrates faith and innovation intentionally:
+- Every session begins with **prayer**
+- Each session includes a **Wisdom Cache** (Scripture-based reflection) to reinforce how God's Word informs every area of life
+- The curriculum reflects core values like **Kingdom-first living**, **servant leadership**, **excellence**, and **impact-driven work**

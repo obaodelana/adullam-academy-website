@@ -1,13 +1,12 @@
 ---
 question: "How is impact measured?"
-order: 8
+order: 10
 category: "program"
 published: true
 ---
 
-We focus on:
-
-- Growth in **technical skills**
-- Increased **confidence and creativity**
-- Awareness of how to integrate **God's Word into everyday life**
-- A heart for solving problems that **benefit others**, not just profit
+We look for growth in areas like:
+- Increased **technical skill** and comfort building real projects
+- Stronger **confidence** and creative problem-solving
+- Greater ability to think **purpose-first** and **impact-driven**
+- Deeper practice of **spiritual wisdom** and applying Scripture to everyday life
