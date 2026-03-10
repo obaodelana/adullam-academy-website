@@ -21,7 +21,7 @@ Field guide for any agent working inside the Adullam Academy website repo (`astr
 - Committing workflow: run `git status`, stage only related files, craft a concise message explaining why the change matters, then `git commit -m "your message"`. Share the resulting status/output with the user when asked.
 
 ## Architecture Snapshot
-- Astro 5 project with only `.astro` components (no React/Vue/Svelte).
+- Astro 5.17+ project with only `.astro` components (no React/Vue/Svelte).
 - Tailwind CSS v4 configured entirely within `src/styles/global.css` via the `@theme` block; no `tailwind.config.js`.
 - `src/layouts/BaseLayout.astro` wraps every page, handles global metadata, header/footer, skip link, announcement bar, scroll animation observer, and view transitions.
 - Content lives under `src/content/` using Astro Content Collections; markdown entries drive FAQs, testimonials, and projects.

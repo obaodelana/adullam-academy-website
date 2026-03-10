@@ -13,15 +13,21 @@ Official repository for [Adullam Academy](https://adullamacademy.com), a faith-c
 
 ```
 /
-├── public/                 # Static assets (logos, images)
+├── public/                 # Static assets (logos, images, videos)
 ├── src/
 │   ├── components/         # Reusable .astro components
 │   ├── content/            # Markdown entries validated by content collections
+│   │   ├── config.ts       # Collection schemas
+│   │   ├── faq/            # FAQ entries (.mdx)
+│   │   ├── projects/       # Project showcase entries (.md)
+│   │   └── testimonials/   # Testimonial entries (.md)
+│   ├── data/               # Static data (links.ts)
 │   ├── layouts/            # BaseLayout wraps every page
 │   ├── pages/              # Route-based pages (/, /bootcamp, /about, /contact)
 │   └── styles/global.css   # Tailwind @theme tokens + shared utilities
 ├── astro.config.mjs        # Astro config (site URL, Tailwind plugin, noop image service)
-└── package.json
+├── package.json
+└── .github/workflows/deploy.yml  # CI/CD pipeline
 ```
 
 ## Commands
@@ -48,9 +54,9 @@ If the workflow fails, re-run it from the Actions tab after addressing the error
 
 | Section | Collection Path | Frontmatter Highlights |
 | --- | --- | --- |
-| FAQs | `src/content/faq/*.md` | `question`, `order`, `category`, `published` |
-| Testimonials | `src/content/testimonials/*.md` | `name`, `role`, `order`, `featured`, `published` |
-| Projects | `src/content/projects/*.md` | `title`, `category`, `description`, `session`, `order`, `featured`, `published` |
+| FAQs | `src/content/faq/*.mdx` | `question`, `order`, `category`, `published` |
+| Testimonials | `src/content/testimonials/*.md` | `name`, `role`, `age?`, `image`, `order`, `featured`, `published` |
+| Projects | `src/content/projects/*.md` | `title`, `category`, `description`, `image?`, `creators[]`, `session`, `order`, `featured`, `published` |
 
 - Schemas live in `src/content/config.ts`; frontmatter must match the defined shapes.
 - Place shared images under `public/images/` and logos under `public/logos/`.
