@@ -35,12 +35,13 @@ Field guide for any agent working inside the Adullam Academy website repo (`astr
 - Additional routes follow Astro’s filesystem conventions; wrap new pages with `BaseLayout`.
 
 ## Content Collections
-- `src/content/config.ts` defines three collections:
+- `src/content/config.ts` defines four collections:
   - `faq`: `question`, `order?`, `category?` (`general|program|spiritual|logistics`), `published?`, body = answer.
   - `testimonials`: `name`, `role` (`Parent|Student|Pastor|Community Member`), optional `age`, `image`, `order`, `featured`, `published`, body = quote.
   - `projects`: `title`, `category` (`3D Game|2D Game|Mobile App|Website|AI Project`), `description`, optional `image`, `creators[]`, `session`, `order`, `featured`, `published`.
+  - `heroIndicators`: `value`, `subValue?`, `label`, `icon?`, `order`, `published`. Trust indicators displayed in the hero section.
 - Markdown lives under `src/content/{collection}/`. Keep filenames kebab-case; order content via `order` frontmatter instead of manual sorting.
-- **Important**: Use `.mdx` extension for content collections to enable proper markdown rendering. Render content using `await faq.render()` and pass `Content` to components.
+- **Important**: Use `.md` extension for content collections. Render content using `await collection.render()` and pass `Content` to components.
 
 ## Coding Standards
 - Prefer TypeScript frontmatter in `.astro` files. Declare `interface Props` and destructure defaults from `Astro.props`.
