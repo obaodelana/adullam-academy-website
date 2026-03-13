@@ -87,9 +87,34 @@ const projectsCollection = defineCollection({
   }),
 });
 
+/**
+ * Hero Indicators Collection
+ * 
+ * Stores trust indicators displayed in the hero section.
+ * Each file represents one indicator with value, label, and optional icon.
+ */
+const heroIndicatorsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    // The value to display (e.g., "8-18", "100%")
+    value: z.string(),
+    // Optional sub-value (e.g., "CAD" for currency)
+    subValue: z.string().optional(),
+    // Label text below the value
+    label: z.string(),
+    // Optional SVG path data for icon
+    icon: z.string().optional(),
+    // Display order (lower = first)
+    order: z.number().optional().default(99),
+    // Whether to show this indicator
+    published: z.boolean().optional().default(true),
+  }),
+});
+
 // Export collections
 export const collections = {
   'faq': faqCollection,
   'testimonials': testimonialsCollection,
   'projects': projectsCollection,
+  'heroIndicators': heroIndicatorsCollection,
 };
