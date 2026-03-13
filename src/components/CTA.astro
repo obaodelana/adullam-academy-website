@@ -116,6 +116,14 @@ const textClasses = {
         )}
       </div>
 
+      <!-- Pricing and format badge -->
+      <div class={`mt-6 flex items-center justify-center gap-2 text-sm ${variant === 'minimal' ? 'text-navy-600' : 'text-white/70'}`}>
+        <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M7 20a4 4 0 01-4-4c0-1 .3-2 .85-2.85A5.985 5.985 0 015 10c1.1 0 2.1.2 3 .55C8.1 7.1 8.55 4.1 9.94 3 9.44 5 15 4.1 19 4.1v1.8a10 10 0 01-6 10c.7.3 1.3.9 1.6 1.6l1.4 2.4A2 2 0 0114 20H7z"/>
+        </svg>
+        <span>$100 CAD · 100% Online</span>
+      </div>
+
       <!-- Trust badge -->
       <div class="mt-12 flex items-center justify-center gap-2 text-sm">
         <svg class={`w-5 h-5 ${variant === 'minimal' ? 'text-gold-600' : 'text-gold-400'}`} fill="currentColor" viewBox="0 0 20 20">
