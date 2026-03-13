@@ -1,7 +1,7 @@
 ---
 /**
  * About Page
- * 
+ *
  * Information about Adullam Academy including:
  * - Mission and Vision statements
  * - Founder story
@@ -10,15 +10,15 @@
  * - Call to action
  */
 
-import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionHeader from '../components/SectionHeader.astro';
-import CoreValue from '../components/CoreValue.astro';
-import FAQ from '../components/FAQ.astro';
-import CTA from '../components/CTA.astro';
-import { getCollection } from 'astro:content';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import CoreValue from "../components/CoreValue.astro";
+import FAQ from "../components/FAQ.astro";
+import CTA from "../components/CTA.astro";
+import { getCollection } from "astro:content";
 
 // Fetch FAQs from content collection
-const faqs = await getCollection('faq', ({ data }) => {
+const faqs = await getCollection("faq", ({ data }) => {
   return data.published === true;
 });
 
@@ -32,24 +32,27 @@ const sortedFaqs = await Promise.all(
         question: faq.data.question,
         answer: Content,
       };
-    })
+    }),
 );
 
 // Core values data
 const coreValues = [
   {
     title: "Kingdom-First Living",
-    verse: "But seek first the kingdom of God and His righteousness, and all these things shall be added to you.",
+    verse:
+      "But seek first the kingdom of God and His righteousness, and all these things shall be added to you.",
     reference: "Matthew 6:33 (NKJV)",
   },
   {
     title: "Impact-Driven Work",
-    verse: "Let your light so shine before men, that they may see your good works and glorify your Father in heaven.",
+    verse:
+      "Let your light so shine before men, that they may see your good works and glorify your Father in heaven.",
     reference: "Matthew 5:16 (NKJV)",
   },
   {
     title: "Excellence",
-    verse: "Do you see a man who excels in his work? He will stand before kings; He will not stand before unknown men.",
+    verse:
+      "Do you see a man who excels in his work? He will stand before kings; He will not stand before unknown men.",
     reference: "Proverbs 22:29 (NKJV)",
   },
   {
@@ -59,38 +62,54 @@ const coreValues = [
   },
   {
     title: "Spiritual Wisdom",
-    verse: "But we speak the wisdom of God in a mystery, the hidden wisdom which God ordained before the ages for our glory... For 'who has known the mind of the LORD that he may instruct Him?' But we have the mind of Christ.",
+    verse:
+      "But we speak the wisdom of God in a mystery, the hidden wisdom which God ordained before the ages for our glory... For 'who has known the mind of the LORD that he may instruct Him?' But we have the mind of Christ.",
     reference: "1 Corinthians 2:7, 16 (NKJV)",
   },
   {
     title: "Prayer & Meditation",
-    verse: "This Book of the Law shall not depart from your mouth, but you shall meditate in it day and night, that you may observe to do according to all that is written in it. For then you will make your way prosperous, and then you will have good success.",
+    verse:
+      "This Book of the Law shall not depart from your mouth, but you shall meditate in it day and night, that you may observe to do according to all that is written in it. For then you will make your way prosperous, and then you will have good success.",
     reference: "Joshua 1:8 (NKJV)",
   },
 ];
 ---
 
-<BaseLayout 
+<BaseLayout
   title="About"
   description="Learn about Adullam Academy's mission, vision, and the founder behind this Kingdom-first tech education initiative for kids and teenagers."
 >
   <!-- Hero Section -->
-  <section class="relative min-h-[60vh] flex items-center gradient-hero overflow-hidden">
+  <section
+    class="relative min-h-[60vh] flex items-center gradient-hero overflow-hidden"
+  >
     <!-- Background elements -->
     <div class="absolute inset-0">
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl animate-float"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-electric-500/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+      <div
+        class="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl animate-float"
+      >
+      </div>
+      <div
+        class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-electric-500/10 rounded-full blur-3xl animate-float"
+        style="animation-delay: -3s;"
+      >
+      </div>
     </div>
 
     <div class="container mx-auto px-4 lg:px-8 py-32 relative z-10 text-center">
-      <p class="text-gold-400 font-semibold tracking-wider uppercase mb-4 animate-on-scroll">
+      <p
+        class="text-gold-400 font-semibold tracking-wider uppercase mb-4 animate-on-scroll"
+      >
         Our Story
       </p>
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight animate-on-scroll max-w-4xl mx-auto">
+      <h1
+        class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight animate-on-scroll max-w-4xl mx-auto"
+      >
         About <span class="gradient-text">Adullam Academy</span>
       </h1>
       <p class="text-xl text-white/80 max-w-2xl mx-auto animate-on-scroll">
-        A technocentric school of innovation with a mandate to raise Kingdom-first tech leaders.
+        A technocentric school of innovation with a mandate to raise
+        Kingdom-first tech leaders.
       </p>
     </div>
   </section>
@@ -101,21 +120,39 @@ const coreValues = [
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 max-w-6xl mx-auto">
         <!-- Mission -->
         <div class="animate-on-scroll">
-          <div class="inline-block px-4 py-2 bg-gold-500/10 rounded-full text-gold-600 text-sm font-semibold mb-6">
+          <div
+            class="inline-block px-4 py-2 bg-gold-500/10 rounded-full text-gold-600 text-sm font-semibold mb-6"
+          >
             Our Mission
           </div>
           <p class="text-xl lg:text-2xl text-navy-800 leading-relaxed">
-            Adullam Academy is a technocentric school of innovation with a mandate to teach kids and teenagers about the <span class="text-gold-600 font-semibold">creative dimension of God</span>, purpose-driven living and systematic innovation—equipping them to be pioneers, founders and leaders who <span class="text-gold-600 font-semibold">advance God's Kingdom on earth</span>.
+            Adullam Academy is a technocentric school of innovation with a
+            mandate to teach kids and teenagers about the <span
+              class="text-gold-600 font-semibold"
+              >creative dimension of God</span
+            >, purpose-driven living and systematic innovation—equipping them to
+            be pioneers, founders and leaders who <span
+              class="text-gold-600 font-semibold"
+              >advance God's Kingdom on earth</span
+            >.
           </p>
         </div>
 
         <!-- Vision -->
         <div class="animate-on-scroll" style="animation-delay: 0.2s;">
-          <div class="inline-block px-4 py-2 bg-gold-500/10 rounded-full text-gold-600 text-sm font-semibold mb-6">
+          <div
+            class="inline-block px-4 py-2 bg-gold-500/10 rounded-full text-gold-600 text-sm font-semibold mb-6"
+          >
             Our Vision
           </div>
           <p class="text-xl lg:text-2xl text-navy-800 leading-relaxed">
-            To raise a generation of youths who can <span class="text-gold-600 font-semibold">identify real-world problems</span>, receive God-inspired ideas, and <span class="text-gold-600 font-semibold">transform those ideas into digital solutions</span> that bring value and lasting impact for Jesus Christ.
+            To raise a generation of youths who can <span
+              class="text-gold-600 font-semibold"
+              >identify real-world problems</span
+            >, receive God-inspired ideas, and <span
+              class="text-gold-600 font-semibold"
+              >transform those ideas into digital solutions</span
+            > that bring value and lasting impact for Jesus Christ.
           </p>
         </div>
       </div>
@@ -125,28 +162,39 @@ const coreValues = [
   <!-- Founder Section -->
   <section class="py-24 lg:py-32 bg-cream-dark">
     <div class="container mx-auto px-4 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
-        <!-- Image placeholder -->
-        <div class="order-2 lg:order-1 animate-on-scroll-left">
-          <div class="relative">
-            <div class="absolute inset-0 bg-linear-to-br from-gold-500/20 to-navy-500/20 rounded-3xl blur-xl"></div>
-            <div class="relative aspect-square">
-              <img
-                src="/images/founder.jpeg"
-                alt="Obaloluwa Odelana, Founder of Adullam Academy"
-                class="w-full h-full object-contain drop-shadow-2xl"
-              />
-            </div>
-            <!-- Decorative badge -->
-            <div class="absolute -bottom-4 -right-4 bg-gold-500 text-navy-900 px-4 py-2 rounded-xl font-bold shadow-lg">
-              Founder
+      <div
+        class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto"
+      >
+        <a href="https://www.linkedin.com/in/obaodelana" target="_blank">
+          <!-- Image placeholder -->
+          <div class="order-2 lg:order-1 animate-on-scroll-left">
+            <div class="relative">
+              <div
+                class="absolute inset-0 bg-linear-to-br from-gold-500/20 to-navy-500/20 rounded-3xl blur-xl"
+              >
+              </div>
+              <div class="relative aspect-square">
+                <img
+                  src="/images/founder.jpeg"
+                  alt="Obaloluwa Odelana, Founder of Adullam Academy"
+                  class="w-full h-full object-contain drop-shadow-2xl"
+                />
+              </div>
+              <!-- Decorative badge -->
+              <div
+                class="absolute -bottom-4 -right-4 bg-gold-500 text-navy-900 px-4 py-2 rounded-xl font-bold shadow-lg"
+              >
+                Founder
+              </div>
             </div>
           </div>
-        </div>
+        </a>
 
         <!-- Content -->
         <div class="order-1 lg:order-2 animate-on-scroll-right">
-          <div class="inline-block px-4 py-2 bg-gold-500/10 rounded-full text-gold-600 text-sm font-semibold mb-6">
+          <div
+            class="inline-block px-4 py-2 bg-gold-500/10 rounded-full text-gold-600 text-sm font-semibold mb-6"
+          >
             Meet the Founder
           </div>
           <h2 class="text-3xl lg:text-4xl font-extrabold text-navy-900 mb-6">
@@ -154,13 +202,29 @@ const coreValues = [
           </h2>
           <div class="space-y-4 text-navy-700 leading-relaxed">
             <p>
-              Obaloluwa Odelana is a <strong>20-year-old Kingdom entrepreneur</strong> and computing science student (BSc Honors) at the University of Alberta. He is passionate about helping kids and teens experience Christianity not just as a religion, but as an <strong>active, personal relationship with God</strong>—one that shapes how they live, learn, and lead.
+              Obaloluwa Odelana is a <strong
+                >20-year-old Kingdom entrepreneur</strong
+              > and computing science student (BSc Honors) at the University of Alberta.
+              He is passionate about helping kids and teens experience Christianity
+              not just as a religion, but as an <strong
+                >active, personal relationship with God</strong
+              >—one that shapes how they live, learn, and lead.
             </p>
             <p>
-              Alongside his spiritual vision, Oba brings strong technical and instructional expertise. He has worked in <strong>AI research, automation engineering, full-stack development, and data analytics</strong> across industry and academic settings. He has also taught programming to over 100 students and led multiple youth coding bootcamps.
+              Alongside his spiritual vision, Oba brings strong technical and
+              instructional expertise. He has worked in <strong
+                >AI research, automation engineering, full-stack development,
+                and data analytics</strong
+              > across industry and academic settings. He has also taught programming
+              to over 100 students and led multiple youth coding bootcamps.
             </p>
             <p>
-              Adullam Academy (AA) is the expression of that vision. While the Church and technology have often been viewed as unrelated, AA bridges that gap. Here, we blend <strong>technical skill-building with the teaching of God's Word</strong>—raising Kingdom-first and Christ-centred innovators empowered to solve real-world problems with God-inspired solutions.
+              Adullam Academy (AA) is the expression of that vision. While the
+              Church and technology have often been viewed as unrelated, AA
+              bridges that gap. Here, we blend <strong
+                >technical skill-building with the teaching of God's Word</strong
+              >—raising Kingdom-first and Christ-centred innovators empowered to
+              solve real-world problems with God-inspired solutions.
             </p>
           </div>
         </div>
@@ -171,54 +235,118 @@ const coreValues = [
   <!-- Core Values Section -->
   <section class="py-24 lg:py-32 bg-cream">
     <div class="container mx-auto px-4 lg:px-8">
-      <SectionHeader 
+      <SectionHeader
         eyebrow="What We Stand For"
         title="Our Core Values"
         description="Every aspect of our program is built on Biblical principles that shape character and inspire excellence."
       />
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {coreValues.map((value, index) => (
-          <CoreValue 
-            title={value.title}
-            verse={value.verse}
-            reference={value.reference}
-            delay={index * 0.1}
-          >
-            <Fragment slot="icon">
-              {value.title === "Kingdom-First Living" && (
-                <svg class="w-6 h-6 text-navy-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
-              )}
-              {value.title === "Impact-Driven Work" && (
-                <svg class="w-6 h-6 text-navy-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              )}
-              {value.title === "Excellence" && (
-                <svg class="w-6 h-6 text-navy-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                </svg>
-              )}
-              {value.title === "Servant Leadership" && (
-                <svg class="w-6 h-6 text-navy-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              )}
-              {value.title === "Spiritual Wisdom" && (
-                <svg class="w-6 h-6 text-navy-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              )}
-              {value.title === "Prayer & Meditation" && (
-                <svg class="w-6 h-6 text-navy-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-              )}
-            </Fragment>
-          </CoreValue>
-        ))}
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+      >
+        {
+          coreValues.map((value, index) => (
+            <CoreValue
+              title={value.title}
+              verse={value.verse}
+              reference={value.reference}
+              delay={index * 0.1}
+            >
+              <Fragment slot="icon">
+                {value.title === "Kingdom-First Living" && (
+                  <svg
+                    class="w-6 h-6 text-navy-900"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                    />
+                  </svg>
+                )}
+                {value.title === "Impact-Driven Work" && (
+                  <svg
+                    class="w-6 h-6 text-navy-900"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                )}
+                {value.title === "Excellence" && (
+                  <svg
+                    class="w-6 h-6 text-navy-900"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                    />
+                  </svg>
+                )}
+                {value.title === "Servant Leadership" && (
+                  <svg
+                    class="w-6 h-6 text-navy-900"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                    />
+                  </svg>
+                )}
+                {value.title === "Spiritual Wisdom" && (
+                  <svg
+                    class="w-6 h-6 text-navy-900"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                    />
+                  </svg>
+                )}
+                {value.title === "Prayer & Meditation" && (
+                  <svg
+                    class="w-6 h-6 text-navy-900"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                    />
+                  </svg>
+                )}
+              </Fragment>
+            </CoreValue>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -226,7 +354,7 @@ const coreValues = [
   <!-- FAQ Section -->
   <section id="faq" class="py-24 lg:py-32 bg-cream-dark scroll-mt-24">
     <div class="container mx-auto px-4 lg:px-8">
-      <SectionHeader 
+      <SectionHeader
         eyebrow="Have Questions?"
         title="Frequently Asked Questions"
         description="Everything you need to know about the Adullam Academy bootcamp program."
@@ -239,7 +367,7 @@ const coreValues = [
   </section>
 
   <!-- CTA Section -->
-  <CTA 
+  <CTA
     headline="God Is Raising An Army of Giants"
     subtext="Adullam Academy is a Kingdom-first preparation ground for exploits in Christ."
     primaryCTA="Enrol Your Child"

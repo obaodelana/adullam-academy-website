@@ -6,7 +6,7 @@ Official repository for [Adullam Academy](https://adullamacademy.com), a faith-c
 
 - **Framework:** Astro (static output)
 - **Styling:** Tailwind CSS v4 with tokens defined in `src/styles/global.css`
-- **Content:** Markdown collections (`faq`, `testimonials`, `projects`)
+- **Content:** Markdown collections (`faq`, `testimonials`, `projects`, `heroIndicators`)
 - **Deployment:** GitHub Actions → GitHub Pages (`.github/workflows/deploy.yml`)
 
 ## Project Structure
@@ -18,7 +18,8 @@ Official repository for [Adullam Academy](https://adullamacademy.com), a faith-c
 │   ├── components/         # Reusable .astro components
 │   ├── content/            # Markdown entries validated by content collections
 │   │   ├── config.ts       # Collection schemas
-│   │   ├── faq/            # FAQ entries (.mdx)
+│   │   ├── faq/            # FAQ entries (.md)
+│   │   ├── heroIndicators/ # Hero trust indicator entries (.md)
 │   │   ├── projects/       # Project showcase entries (.md)
 │   │   └── testimonials/   # Testimonial entries (.md)
 │   ├── data/               # Static data (links.ts)
@@ -54,9 +55,10 @@ If the workflow fails, re-run it from the Actions tab after addressing the error
 
 | Section | Collection Path | Frontmatter Highlights |
 | --- | --- | --- |
-| FAQs | `src/content/faq/*.mdx` | `question`, `order`, `category`, `published` |
+| FAQs | `src/content/faq/*.md` | `question`, `order`, `category`, `published` |
 | Testimonials | `src/content/testimonials/*.md` | `name`, `role`, `age?`, `image`, `order`, `featured`, `published` |
 | Projects | `src/content/projects/*.md` | `title`, `category`, `description`, `image?`, `creators[]`, `session`, `order`, `featured`, `published` |
+| Hero Indicators | `src/content/heroIndicators/*.md` | `value`, `subValue?`, `label`, `icon?`, `order`, `published` |
 
 - Schemas live in `src/content/config.ts`; frontmatter must match the defined shapes.
 - Place shared images under `public/images/` and logos under `public/logos/`.
