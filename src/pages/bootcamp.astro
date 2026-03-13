@@ -1,7 +1,7 @@
 ---
 /**
  * Bootcamp/Program Page
- * 
+ *
  * Detailed information about the Adullam Academy bootcamp program:
  * - Program overview and registration CTA
  * - Schedule and format details
@@ -10,27 +10,29 @@
  * - Registration CTA
  */
 
-import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionHeader from '../components/SectionHeader.astro';
-import ProjectShowcase from '../components/ProjectShowcase.astro';
-import Stats from '../components/Stats.astro';
-import CTA from '../components/CTA.astro';
-import { REGISTER_LINK } from '../data/links';
-import { getCollection } from 'astro:content';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import ProjectShowcase from "../components/ProjectShowcase.astro";
+import Stats from "../components/Stats.astro";
+import CTA from "../components/CTA.astro";
+import { REGISTER_LINK } from "../data/links";
+import { getCollection } from "astro:content";
 
 // Fetch projects from content collection
-const projects = await getCollection('projects', ({ data }) => {
+const projects = await getCollection("projects", ({ data }) => {
   return data.published === true;
 });
 
 // Sort by order and transform for ProjectShowcase
 const sortedProjects = projects
   .sort((a, b) => (a.data.order || 99) - (b.data.order || 99))
-  .map(p => ({
+  .map((p) => ({
     title: p.data.title,
     category: p.data.category,
     description: p.data.description,
-    image: p.data.image || `/images/projects/${p.data.category.toLowerCase().replace(' ', '-')}-placeholder.svg`,
+    image:
+      p.data.image ||
+      `/images/projects/${p.data.category.toLowerCase().replace(" ", "-")}-placeholder.svg`,
   }));
 
 // Bootcamp schedule
@@ -49,23 +51,33 @@ const programStats = [
 ];
 ---
 
-<BaseLayout 
+<BaseLayout
   title="Program"
   description="Join our 8-week, faith-driven bootcamp where kids and teens aged 8-18 build real apps, games, and AI projects through asynchronous work sessions and weekly weekend stand-ups."
 >
   <!-- Hero Section -->
-  <section class="relative min-h-[70vh] flex items-center gradient-hero overflow-hidden">
+  <section
+    class="relative min-h-[70vh] flex items-center gradient-hero overflow-hidden"
+  >
     <!-- Background elements -->
     <div class="absolute inset-0">
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl animate-float"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-electric-500/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+      <div
+        class="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl animate-float"
+      >
+      </div>
+      <div
+        class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-electric-500/10 rounded-full blur-3xl animate-float"
+        style="animation-delay: -3s;"
+      >
+      </div>
     </div>
 
     <!-- Grid overlay -->
-    <div 
+    <div
       class="absolute inset-0 opacity-[0.03]"
       style="background-image: linear-gradient(rgba(212, 168, 83, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(212, 168, 83, 0.5) 1px, transparent 1px); background-size: 50px 50px;"
-    ></div>
+    >
+    </div>
 
     <div class="container mx-auto px-4 lg:px-8 py-32 relative z-10">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -73,29 +85,53 @@ const programStats = [
           <p class="text-gold-400 font-semibold tracking-wider uppercase mb-4">
             Project-Based Learning
           </p>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">
+          <h1
+            class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight"
+          >
             Register for Our <span class="gradient-text">Online Bootcamp</span>
           </h1>
           <p class="text-xl text-white/80 mb-8 leading-relaxed">
-            Give your child (aged 8-18) an edge in the age of AI and programming! Our bootcamp is a project-based learning experience designed to explore the intersection of <strong class="text-white">faith, creativity, and technology</strong>.
+            Give your child (aged 8-18) an edge in the age of AI and
+            programming! Our bootcamp is a project-based learning experience
+            designed to explore the intersection of <strong class="text-white"
+              >faith, creativity, and technology</strong
+            >.
           </p>
           <div class="flex flex-col sm:flex-row gap-4">
-            <a 
+            <a
               href={REGISTER_LINK}
               class="btn-primary text-lg px-8 py-4 inline-flex items-center justify-center gap-2"
             >
               Register Now
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
               </svg>
             </a>
-            <a 
+            <a
               href="#what-they-build"
               class="btn-secondary text-lg px-8 py-4 inline-flex items-center justify-center gap-2"
             >
               See Projects
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </a>
           </div>
@@ -104,7 +140,10 @@ const programStats = [
         <div class="block animate-on-scroll-right order-0 lg:order-1">
           <div class="relative">
             <!-- Glow effect behind the gif -->
-            <div class="absolute -inset-4 bg-linear-to-br from-gold-500/30 to-electric-500/30 rounded-2xl blur-3xl opacity-75"></div>
+            <div
+              class="absolute -inset-4 bg-linear-to-br from-gold-500/30 to-electric-500/30 rounded-2xl blur-3xl opacity-75"
+            >
+            </div>
             <img
               src="/images/maze.gif"
               alt="Maze illustration"
@@ -120,93 +159,156 @@ const programStats = [
   <section class="py-24 lg:py-32 bg-cream">
     <div class="container mx-auto px-4 lg:px-8">
       <div class="max-w-4xl mx-auto">
-        <SectionHeader 
+        <SectionHeader
           eyebrow="Program Structure"
           title="Project-Based Bootcamps"
-           description="Over 8 weeks, students work <strong>asynchronously</strong> in teams, gather for weekend stand-ups, and launch real prototypes that stretch both their technical and spiritual leadership."
+          description="Over 8 weeks, students work asynchronously in teams, gather for weekend stand-ups, and launch real prototypes that stretch both their technical and spiritual leadership."
         />
 
         <!-- Timeline -->
         <div class="mt-16 space-y-6">
-          <h3 class="text-xl font-bold text-navy-900 text-center mb-8">Program Journey</h3>
-          
+          <h3 class="text-xl font-bold text-navy-900 text-center mb-8">
+            Program Journey
+          </h3>
+
           <div class="relative">
             <!-- Timeline line -->
-            <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gold-300 -translate-x-1/2 hidden md:block"></div>
-            
+            <div
+              class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gold-300 -translate-x-1/2 hidden md:block"
+            >
+            </div>
+
             <div class="space-y-8">
               <!-- Year-Round Rhythm -->
-              <div class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll">
+              <div
+                class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll"
+              >
                 <div class="md:w-1/2 md:text-right md:pr-8">
-                  <div class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2">
+                  <div
+                    class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2"
+                  >
                     3 Cohorts Per Year
                   </div>
-                  <h4 class="text-lg font-bold text-navy-900">Project-Based Cadence</h4>
-                  <p class="text-navy-600/80">We run immersive bootcamps three times a year so students can plan ahead, join when ready, and return to keep building bigger projects.</p>
+                  <h4 class="text-lg font-bold text-navy-900">
+                    Project-Based Cadence
+                  </h4>
+                  <p class="text-navy-600/80">
+                    We run immersive bootcamps three times a year so students
+                    can plan ahead, join when ready, and return to keep building
+                    bigger projects.
+                  </p>
                 </div>
-                <div class="w-12 h-12 rounded-full bg-gold-500 hidden md:flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg">
-                   1
-                 </div>
+                <div
+                  class="w-12 h-12 rounded-full bg-gold-500 hidden md:flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg"
+                >
+                  1
+                </div>
                 <div class="md:w-1/2 md:pl-8"></div>
               </div>
 
               <!-- Week 1-2 -->
-              <div class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll">
+              <div
+                class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll"
+              >
                 <div class="md:w-1/2 md:text-right md:pr-8">
-                  <div class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2">
+                  <div
+                    class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2"
+                  >
                     Weeks 1-2
                   </div>
-                  <h4 class="text-lg font-bold text-navy-900">Technical Foundations</h4>
-                  <p class="text-navy-600/80">Students build a working understanding of the core programming language and tools with guided labs and asynchronous work time.</p>
+                  <h4 class="text-lg font-bold text-navy-900">
+                    Technical Foundations
+                  </h4>
+                  <p class="text-navy-600/80">
+                    Students build a working understanding of the core
+                    programming language and tools with guided labs and
+                    asynchronous work time.
+                  </p>
                 </div>
-                <div class="w-12 h-12 rounded-full bg-gold-500 hidden md:flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg">
-                   2
-                 </div>
+                <div
+                  class="w-12 h-12 rounded-full bg-gold-500 hidden md:flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg"
+                >
+                  2
+                </div>
                 <div class="md:w-1/2 md:pl-8"></div>
               </div>
 
               <!-- Week 3 -->
-              <div class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll">
+              <div
+                class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll"
+              >
                 <div class="md:w-1/2 md:text-right md:pr-8">
-                  <div class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2">
+                  <div
+                    class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2"
+                  >
                     Week 3
                   </div>
                   <h4 class="text-lg font-bold text-navy-900">Apply & Build</h4>
-                  <p class="text-navy-600/80">Students begin applying what they learned by building apps and working on real-world problems.</p>
+                  <p class="text-navy-600/80">
+                    Students begin applying what they learned by building apps
+                    and working on real-world problems.
+                  </p>
                 </div>
-                <div class="w-12 h-12 rounded-full bg-gold-500 hidden md:flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg">
-                   3
-                 </div>
+                <div
+                  class="w-12 h-12 rounded-full bg-gold-500 hidden md:flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg"
+                >
+                  3
+                </div>
                 <div class="md:w-1/2 md:pl-8"></div>
               </div>
 
               <!-- Week 4-7 -->
-              <div class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll">
-                <div class="md:w-1/2 md:text-right md:pr-8 md:order-1 order-2"></div>
-                <div class="w-12 h-12 rounded-full bg-gold-500 hidden md:flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg order-1 md:order-2">
-                   4
-                 </div>
+              <div
+                class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll"
+              >
+                <div class="md:w-1/2 md:text-right md:pr-8 md:order-1 order-2">
+                </div>
+                <div
+                  class="w-12 h-12 rounded-full bg-gold-500 hidden md:flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg order-1 md:order-2"
+                >
+                  4
+                </div>
                 <div class="md:w-1/2 md:pl-8 order-3">
-                  <div class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2">
+                  <div
+                    class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2"
+                  >
                     Weeks 4-7
                   </div>
-                  <h4 class="text-lg font-bold text-navy-900">Build & Collaborate</h4>
-                  <p class="text-navy-600/80">Teams tackle real-world problems, brainstorm solutions, and develop working prototypes with instructor support during weekend stand-ups.</p>
+                  <h4 class="text-lg font-bold text-navy-900">
+                    Build & Collaborate
+                  </h4>
+                  <p class="text-navy-600/80">
+                    Teams tackle real-world problems, brainstorm solutions, and
+                    develop working prototypes with instructor support during
+                    weekend stand-ups.
+                  </p>
                 </div>
               </div>
 
               <!-- Week 8 -->
-              <div class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll">
+              <div
+                class="relative flex flex-col md:flex-row items-center gap-6 animate-on-scroll"
+              >
                 <div class="md:w-1/2 md:text-right md:pr-8">
-                  <div class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2">
+                  <div
+                    class="inline-block px-3 py-1 bg-gold-500/10 rounded-full text-gold-600 text-sm font-medium mb-2"
+                  >
                     Week 8
                   </div>
-                  <h4 class="text-lg font-bold text-navy-900">Launch & Present</h4>
-                  <p class="text-navy-600/80">Students polish their apps, prepare demos, and present final builds—showing technical rigor, creative thinking, and how faith guided their work.</p>
+                  <h4 class="text-lg font-bold text-navy-900">
+                    Launch & Present
+                  </h4>
+                  <p class="text-navy-600/80">
+                    Students polish their apps, prepare demos, and present final
+                    builds—showing technical rigor, creative thinking, and how
+                    faith guided their work.
+                  </p>
                 </div>
-                <div class="w-12 h-12 rounded-full bg-gold-500 hidden md:flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg">
-                   5
-                 </div>
+                <div
+                  class="w-12 h-12 rounded-full bg-gold-500 hidden md:flex items-center justify-center text-navy-900 font-bold z-10 shadow-lg"
+                >
+                  5
+                </div>
                 <div class="md:w-1/2 md:pl-8"></div>
               </div>
             </div>
@@ -226,46 +328,59 @@ const programStats = [
   <!-- Schedule Section -->
   <section class="py-24 lg:py-32 bg-cream">
     <div class="container mx-auto px-4 lg:px-8">
-      <SectionHeader 
+      <SectionHeader
         eyebrow="Schedule"
         title="Bootcamp Sessions"
-        description="We run three 8-week bootcamps per year. Students work <strong>asynchronously</strong> during the week and join 2-hour stand-ups on Saturdays or Sundays."
+        description="We run three 8-week bootcamps per year. Students work asynchronously during the week and join 2-hour stand-ups on Saturdays or Sundays."
       />
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-        {bootcampSchedule.map((session, index) => (
-          <div 
-            class:list={[
-              "p-6 rounded-xl border-2 text-center animate-on-scroll transition-all duration-300",
-              session.status === 'active' 
-                ? "bg-gold-500/10 border-gold-500" 
-                : "bg-white border-navy-100 hover:border-gold-300"
-            ]}
-            style={`animation-delay: ${index * 0.1}s;`}
-          >
-            {session.status === 'active' && (
-              <span class="inline-block px-3 py-1 bg-gold-500 text-navy-900 text-xs font-bold rounded-full mb-3">
-                {session.note}
-              </span>
-            )}
-            <p class="text-lg font-bold text-navy-900">{session.period}</p>
-            <p class="text-sm text-navy-600/70 mt-1">Weekend stand-ups · 2 hours</p>
-          </div>
-        ))}
+        {
+          bootcampSchedule.map((session, index) => (
+            <div
+              class:list={[
+                "p-6 rounded-xl border-2 text-center animate-on-scroll transition-all duration-300",
+                session.status === "active"
+                  ? "bg-gold-500/10 border-gold-500"
+                  : "bg-white border-navy-100 hover:border-gold-300",
+              ]}
+              style={`animation-delay: ${index * 0.1}s;`}
+            >
+              {session.status === "active" && (
+                <span class="inline-block px-3 py-1 bg-gold-500 text-navy-900 text-xs font-bold rounded-full mb-3">
+                  {session.note}
+                </span>
+              )}
+              <p class="text-lg font-bold text-navy-900">{session.period}</p>
+              <p class="text-sm text-navy-600/70 mt-1">
+                Weekend stand-ups · 2 hours
+              </p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
 
   <!-- What They Build Section -->
-  <section id="what-they-build" class="py-24 lg:py-32 gradient-navy relative overflow-hidden">
+  <section
+    id="what-they-build"
+    class="py-24 lg:py-32 gradient-navy relative overflow-hidden"
+  >
     <!-- Background decoration -->
     <div class="absolute inset-0 opacity-10">
-      <div class="absolute top-0 right-0 w-96 h-96 bg-gold-500/30 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-0 left-0 w-80 h-80 bg-electric-500/20 rounded-full blur-3xl"></div>
+      <div
+        class="absolute top-0 right-0 w-96 h-96 bg-gold-500/30 rounded-full blur-3xl"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-80 h-80 bg-electric-500/20 rounded-full blur-3xl"
+      >
+      </div>
     </div>
 
     <div class="container mx-auto px-4 lg:px-8 relative z-10">
-      <SectionHeader 
+      <SectionHeader
         eyebrow="Student Projects"
         title="What Will Students Build?"
         description="Each bootcamp focuses on creating real, deployable prototypes using modern tools. Projects are intentionally designed to be exciting, age-appropriate, and spiritually grounded."
@@ -277,7 +392,7 @@ const programStats = [
   </section>
 
   <!-- Registration CTA -->
-  <CTA 
+  <CTA
     headline="Register Now!"
     subtext="The world needs more Kingdom-focused innovators. Your child could be one of them. Secure a spot in the next bootcamp and watch them grow in skill, confidence, and purpose."
     primaryCTA="Register Now"
