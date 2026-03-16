@@ -26,7 +26,7 @@ const faqCollection = defineCollection({
     // Display order (lower = first)
     order: z.number().optional().default(99),
     // Category for grouping (optional)
-    category: z.enum(['general', 'program', 'spiritual', 'logistics']).optional().default('general'),
+    category: z.enum(['general', 'program', 'spiritual', 'logistics', 'pricing']).optional().default('general'),
     // Whether to show this FAQ
     published: z.boolean().optional().default(true),
   }),
