@@ -162,6 +162,29 @@ const typeLabels: Record<string, string> = {
           </div>
         </div>
 
+        <!-- Responsibilities (optional) -->
+        {data.responsibilities && data.responsibilities.length > 0 && (
+          <div class="animate-on-scroll">
+            <p class="text-gold-600 font-semibold tracking-wider uppercase text-sm mb-3">Areas you may oversee</p>
+            <h2 class="text-2xl font-extrabold text-navy-900 mb-6">What this role covers</h2>
+            <div class="bg-white rounded-2xl border border-navy-100 p-6 space-y-3">
+              {data.responsibilities.map((item, i) => (
+                <div
+                  class="flex items-start gap-3 animate-on-scroll"
+                  style={`animation-delay: ${i * 0.06}s;`}
+                >
+                  <div class="w-5 h-5 rounded bg-navy-100 flex items-center justify-center shrink-0 mt-0.5">
+                    <svg class="w-3 h-3 text-navy-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                  <p class="text-navy-700 leading-relaxed text-sm">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
       </div>
     </div>
   </section>

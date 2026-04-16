@@ -143,6 +143,8 @@ const jobsCollection = defineCollection({
     compensationNotes: z.string().optional(),
     // "You'll be a great fit if..." bullet points
     fitSignals: z.array(z.string()),
+    // Areas of responsibility (optional)
+    responsibilities: z.array(z.string()).optional(),
     // Display order (lower = first)
     order: z.number().optional().default(99),
     // Whether to show this listing
