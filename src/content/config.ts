@@ -111,10 +111,50 @@ const heroIndicatorsCollection = defineCollection({
   }),
 });
 
+/**
+ * Jobs Collection
+ *
+ * Stores job listings for the /jobs page.
+ * Each file represents one open position.
+ */
+const jobsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    // Job title
+    title: z.string(),
+    // Employment type
+    type: z.enum(['part-time', 'full-time', 'contract', 'volunteer']),
+    // Location (e.g. "Remote")
+    location: z.string().optional(),
+    // Short pitch shown on the listing card
+    summary: z.string(),
+    // 3 key qualities for this role
+    qualities: z.array(z.object({
+      label: z.string(),
+      description: z.string(),
+    })),
+    // What success looks like in this role
+    successLooks: z.string(),
+    // Working style description
+    workingStyle: z.string(),
+    // Compensation range (e.g. "~$25–30/hr")
+    compensationRange: z.string(),
+    // Additional compensation notes
+    compensationNotes: z.string().optional(),
+    // "You'll be a great fit if..." bullet points
+    fitSignals: z.array(z.string()),
+    // Display order (lower = first)
+    order: z.number().optional().default(99),
+    // Whether to show this listing
+    published: z.boolean().optional().default(true),
+  }),
+});
+
 // Export collections
 export const collections = {
   'faq': faqCollection,
   'testimonials': testimonialsCollection,
   'projects': projectsCollection,
   'heroIndicators': heroIndicatorsCollection,
+  'jobs': jobsCollection,
 };
