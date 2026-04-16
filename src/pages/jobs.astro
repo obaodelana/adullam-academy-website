@@ -1,0 +1,261 @@
+---
+/**
+ * Jobs Page
+ *
+ * Lists all open positions at Adullam Academy.
+ * Each job card links to a dedicated detail page at /jobs/[slug].
+ */
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CTA from "../components/CTA.astro";
+import { getCollection } from "astro:content";
+
+const jobs = await getCollection("jobs", ({ data }) => data.published === true);
+const sortedJobs = jobs.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
+
+const typeLabels: Record<string, string> = {
+  "part-time": "Part-Time",
+  "full-time": "Full-Time",
+  "contract": "Contract",
+  "volunteer": "Volunteer",
+};
+
+const whoWeAreLookingFor = [
+  {
+    label: "Think in outcomes, not just activity",
+    description: "Every decision connected to a goal.",
+  },
+  {
+    label: "Constantly learning and improving",
+    description: "Growing your craft and staying curious about what's working.",
+  },
+  {
+    label: "Operate without a perfect manual",
+    description: "Create momentum, take initiative, and follow through.",
+  },
+];
+
+const whatWeOffer = [
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />`,
+    label: "Flexible hours",
+    description: "Part-time schedule — you manage your own time.",
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />`,
+    label: "Collaborative team",
+    description: "Low-ego, high-ownership culture.",
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />`,
+    label: "Meaningful work",
+    description: "Tech education that integrates faith and formation.",
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />`,
+    label: "Performance-based opportunities",
+    description: "For roles where impact is measurable.",
+  },
+];
+
+const philosophy = [
+  "We move when God says move — operating as the Spirit leads.",
+  "We receive inspiration, we create, and we run with it.",
+  "We are the hands and feet of God, bringing into time what He purposed in eternity.",
+];
+---
+
+<BaseLayout
+  title="Jobs"
+  description="Join the Adullam Academy team. We're looking for mission-aligned creatives, educators, and builders who want to do meaningful work."
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[40vh] flex items-center gradient-hero overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl animate-float"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-electric-500/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+    </div>
+    <div class="container mx-auto px-4 lg:px-8 py-32 relative z-10 text-center">
+      <p class="text-gold-400 font-semibold tracking-wider uppercase mb-4 animate-on-scroll">
+        Join Our Team
+      </p>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight animate-on-scroll">
+        Work With <span class="gradient-text">Adullam Academy</span>
+      </h1>
+      <p class="text-xl text-white/80 max-w-2xl mx-auto animate-on-scroll">
+        We're a small, purpose-driven team building something meaningful. If that resonates, read on.
+      </p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="py-24 bg-navy-900">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-gold-400 font-semibold tracking-wider uppercase mb-4 animate-on-scroll">
+          About Adullam Academy
+        </p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-8 animate-on-scroll">
+          Empowering the next generation to build with God.
+        </h2>
+        <div class="space-y-5 text-white/75 text-lg leading-relaxed text-left animate-on-scroll">
+          <p>
+            We are sent to equip kids with the tools and skills required to bring transformation to their world — raising problem-solvers and solution-providers who embody the Spirit of excellence. Adullam Academy is a Christian innovation and coding community for kids and teens ages 8–18.
+          </p>
+          <p>
+            Building with God means: moving when He says move, receiving divine inspiration and acting on it, creating divine solutions so that His light shines more brightly and His Kingdom finds expression in the world. That's the mission. That's why we exist.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who We're Looking For -->
+  <section class="py-24 bg-cream">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-12 animate-on-scroll">
+        <p class="text-gold-600 font-semibold tracking-wider uppercase mb-3">Who We're Looking For</p>
+        <h2 class="text-3xl font-extrabold text-navy-900">
+          You thrive in an early-stage environment.
+        </h2>
+        <p class="mt-4 text-navy-600 text-lg">
+          We're building, experimenting, and improving fast — and you don't need every credential to contribute. What you do need is the mindset.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {whoWeAreLookingFor.map((item, i) => (
+          <div
+            class="bg-white rounded-2xl border border-navy-100 p-6 card-hover animate-on-scroll"
+            style={`animation-delay: ${i * 0.1}s;`}
+          >
+            <div class="w-10 h-10 rounded-xl bg-gold-500/15 flex items-center justify-center mb-4">
+              <span class="text-gold-600 font-extrabold text-lg">{i + 1}</span>
+            </div>
+            <h3 class="font-bold text-navy-900 mb-2">{item.label}</h3>
+            <p class="text-navy-600 text-sm leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Offer -->
+  <section class="py-24 bg-cream-dark">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-12 animate-on-scroll">
+        <p class="text-gold-600 font-semibold tracking-wider uppercase mb-3">What We Offer</p>
+        <h2 class="text-3xl font-extrabold text-navy-900">Built for people who care about the work.</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        {whatWeOffer.map((item, i) => (
+          <div
+            class="bg-white rounded-2xl border border-navy-100 p-6 flex items-start gap-4 card-hover animate-on-scroll"
+            style={`animation-delay: ${i * 0.1}s;`}
+          >
+            <div class="w-12 h-12 rounded-xl bg-linear-to-br from-gold-500/20 to-gold-300/5 flex items-center justify-center shrink-0">
+              <svg class="w-6 h-6 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <Fragment set:html={item.icon} />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-navy-900 mb-1">{item.label}</h3>
+              <p class="text-navy-600 text-sm leading-relaxed">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Operating Philosophy -->
+  <section class="py-24 bg-navy-900">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-2xl mx-auto text-center mb-12 animate-on-scroll">
+        <p class="text-gold-400 font-semibold tracking-wider uppercase mb-3">Our Operating Philosophy</p>
+        <h2 class="text-3xl font-extrabold text-white">How we move.</h2>
+      </div>
+      <div class="max-w-2xl mx-auto space-y-4">
+        {philosophy.map((line, i) => (
+          <div
+            class="flex items-start gap-4 animate-on-scroll"
+            style={`animation-delay: ${i * 0.1}s;`}
+          >
+            <div class="w-8 h-8 rounded-full bg-gold-500/20 flex items-center justify-center shrink-0 mt-0.5">
+              <svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <p class="text-white/80 text-lg leading-relaxed">{line}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Positions -->
+  <section class="py-24 bg-cream">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12 animate-on-scroll">
+          <p class="text-gold-600 font-semibold tracking-wider uppercase mb-3">Open Positions</p>
+          <h2 class="text-3xl font-extrabold text-navy-900">
+            {sortedJobs.length === 1
+              ? "1 open position"
+              : sortedJobs.length > 1
+              ? `${sortedJobs.length} open positions`
+              : "Current openings"}
+          </h2>
+        </div>
+
+        {sortedJobs.length > 0 ? (
+          <div class="space-y-6">
+            {sortedJobs.map((job, i) => (
+              <div
+                class="group bg-white rounded-2xl border border-navy-100 p-8 card-hover animate-on-scroll"
+                style={`animation-delay: ${i * 0.1}s;`}
+              >
+                <div class="flex flex-wrap items-start gap-3 mb-4">
+                  <span class="px-3 py-1 text-xs font-bold uppercase tracking-wider bg-navy-900 text-gold-400 rounded-full">
+                    {typeLabels[job.data.type] ?? job.data.type}
+                  </span>
+                  {job.data.location && (
+                    <span class="flex items-center gap-1 text-sm text-navy-500">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      {job.data.location}
+                    </span>
+                  )}
+                </div>
+                <h3 class="text-2xl font-extrabold text-navy-900 mb-3">{job.data.title}</h3>
+                <p class="text-navy-600 leading-relaxed mb-6">{job.data.summary}</p>
+                <a
+                  href={`/jobs/${job.slug}`}
+                  class="btn-primary inline-flex items-center gap-2"
+                >
+                  View Listing
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </a>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="text-center py-16 bg-white rounded-2xl border border-navy-100 animate-on-scroll">
+            <p class="text-navy-500 text-lg">No open positions right now — check back soon.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    headline="Raising Kingdom Visionaries"
+    subtext="While you're here — see what we're building with the next generation."
+    primaryCTA="Explore Our Program"
+    primaryLink="/bootcamp"
+    variant="gradient"
+  />
+</BaseLayout>
