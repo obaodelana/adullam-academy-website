@@ -154,6 +154,15 @@ const jobsCollection = defineCollection({
     compensationNotes: z.string().optional(),
     // "You'll be a great fit if..." bullet points
     fitSignals: z.array(z.string()),
+    // Why build with us / Benefits
+    benefits: z
+      .array(
+        z.object({
+          title: z.string(),
+          description: z.string(),
+        }),
+      )
+      .optional(),
     // Areas of responsibility (optional)
     responsibilities: z.array(z.string()).optional(),
     // Display order (lower = first)
